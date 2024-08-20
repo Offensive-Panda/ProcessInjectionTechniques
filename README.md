@@ -22,7 +22,7 @@
 </div>
  <br>
  <div align=center>
-<img src="https://github.com/Offensive-Panda/DefenseEvasionTechniques/raw/main/MD.jpg" alt="MYSETUP" width="450" height="450">
+<img src="https://github.com/Offensive-Panda/ProcessInjectionTechniques/raw/main/PE.jpg" alt="MYSETUP" width="450" height="450">
 </div>
 </body>
 </html>
