@@ -86,8 +86,10 @@ layout: default
             color: #555;
             margin-left: 120px;
         }
-          body {
+      body {
             font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
             margin: 20px;
         }
         .heatmap {
@@ -98,16 +100,18 @@ layout: default
             margin: 0 auto;
         }
         .heatmap-item {
-            background-color: #f0f0f0;
+            background-color: #fff;
+            color: #000;
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
             text-align: center;
             position: relative;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
         .heatmap-item:hover {
-            background-color: #e0e0e0;
+            background-color: #f0f0f0;
+            color: #000;
         }
         .heatmap-item::after {
             content: attr(data-tooltip);
@@ -143,7 +147,31 @@ layout: default
     <h2>Shellcode</h2>
     <p>Throughout the series, I will be using my custom-generated shellcode, which displays a message box with the text "Hello from Offensive Panda." This shellcode serves as a consistent and straightforward payload for demonstrating various process injection techniques. However, you are encouraged to experiment with different shellcodes tailored to your needs, allowing you to explore and apply the concepts in ways that best suit your learning objectives or project requirements.</p>
 </div>
-
+    <h2>Process Injection Techniques Heatmap</h2>
+    <div class="heatmap">
+        <div class="heatmap-item" data-tooltip="Injects code into a local process’s memory space.">Classic Code Injection Local Process</div>
+        <div class="heatmap-item" data-tooltip="Injects code into a remote process’s memory space.">Classic Code Injection Remote Process</div>
+        <div class="heatmap-item" data-tooltip="Injects code with obfuscated API calls to avoid detection.">Classic Code Injection with API Obfuscation</div>
+        <div class="heatmap-item" data-tooltip="Uses VirtualProtect to modify memory protection and inject code.">Classic Code Injection VirtualProtect</div>
+        <div class="heatmap-item" data-tooltip="Injects a DLL into a process’s address space.">Classic DLL Injection</div>
+        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into memory without standard API functions.">Reflective DLL Injection</div>
+        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions..">Reflective DLL Loading (Lagos Island)</div>
+        <div class="heatmap-item" data-tooltip="Injects a PE file into a process for execution.">PE Injection</div>
+        <div class="heatmap-item" data-tooltip="Modifies the entry point address of an executable for code injection.">AddressOfEntryPoint Injection</div>
+        <div class="heatmap-item" data-tooltip="Uses APCs to execute code within a process’s thread.">APC Injection</div>
+        <div class="heatmap-item" data-tooltip="Injects code early in the process’s execution.">Early Bird Injection</div>
+        <div class="heatmap-item" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting Injection</div>
+        <div class="heatmap-item" data-tooltip="Exploits file system operations for code injection.">Doppelganging Injection</div>
+        <div class="heatmap-item" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateThread and Map View</div>
+        <div class="heatmap-item" data-tooltip="Advanced injection technique with sophisticated methods.">Mokingjay</div>
+        <div class="heatmap-item" data-tooltip="Uses the Fork API to create a child process and inject code.">Fork API Injection</div>
+        <div class="heatmap-item" data-tooltip="Injects code using fibers, a lightweight thread-like construct.">Injection through Fibers</div>
+        <div class="heatmap-item" data-tooltip="Uses low-level NT Native API functions for code injection.">NT API Injection</div>
+        <div class="heatmap-item" data-tooltip="Executes system calls directly for code injection.">Direct Syscalls</div>
+        <div class="heatmap-item" data-tooltip="Uses indirect methods like function pointers for system calls.">Indirect Syscalls</div>
+        <div class="heatmap-item" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
+        <div class="heatmap-item" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
+    </div>
 <div class="content-section">
     <h2>Process Injection Series</h2>
     <div class="card-container">
@@ -304,32 +332,6 @@ layout: default
      
     </div>
 </div>
-    <h2>Process Injection Techniques Heatmap</h2>
-    <div class="heatmap">
-        <div class="heatmap-item" data-tooltip="Injects code into a local process’s memory space.">Classic Code Injection Local Process</div>
-        <div class="heatmap-item" data-tooltip="Injects code into a remote process’s memory space.">Classic Code Injection Remote Process</div>
-        <div class="heatmap-item" data-tooltip="Injects code with obfuscated API calls to avoid detection.">Classic Code Injection with API Obfuscation</div>
-        <div class="heatmap-item" data-tooltip="Uses VirtualProtect to modify memory protection and inject code.">Classic Code Injection VirtualProtect</div>
-        <div class="heatmap-item" data-tooltip="Injects a DLL into a process’s address space.">Classic DLL Injection</div>
-        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into memory without standard API functions.">Reflective DLL Injection</div>
-        <div class="heatmap-item" data-tooltip="Reflectively loads a DLL into memory without traditional API functions.">Reflective DLL Loading</div>
-        <div class="heatmap-item" data-tooltip="Injects a PE file into a process for execution.">PE Injection</div>
-        <div class="heatmap-item" data-tooltip="Modifies the entry point address of an executable for code injection.">AddressOfEntryPoint Injection</div>
-        <div class="heatmap-item" data-tooltip="Uses APCs to execute code within a process’s thread.">APC Injection</div>
-        <div class="heatmap-item" data-tooltip="Injects code early in the process’s execution.">Early Bird Injection</div>
-        <div class="heatmap-item" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting Injection</div>
-        <div class="heatmap-item" data-tooltip="Exploits file system operations for code injection.">Doppelganging Injection</div>
-        <div class="heatmap-item" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateThread and Map View</div>
-        <div class="heatmap-item" data-tooltip="Advanced injection technique with sophisticated methods.">Mokingjay</div>
-        <div class="heatmap-item" data-tooltip="Uses the Fork API to create a child process and inject code.">Fork API Injection</div>
-        <div class="heatmap-item" data-tooltip="Injects code using fibers, a lightweight thread-like construct.">Injection through Fibers</div>
-        <div class="heatmap-item" data-tooltip="Uses low-level NT Native API functions for code injection.">NT API Injection</div>
-        <div class="heatmap-item" data-tooltip="Executes system calls directly for code injection.">Direct Syscalls</div>
-        <div class="heatmap-item" data-tooltip="Uses indirect methods like function pointers for system calls.">Indirect Syscalls</div>
-        <div class="heatmap-item" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
-        <div class="heatmap-item" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
-        <div class="heatmap-item" data-tooltip="Manipulates the hook chain in a process for code injection.">HookChain Injection</div>
-    </div>
 <div class="disclaimer">
         <h2>Disclaimer</h2>
         <p>The content, techniques, and tools provided in this repository are intended solely for educational and research purposes within the cybersecurity community. I explicitly disclaim any responsibility for the misuse or unlawful use of the provided materials. Any actions taken based on the information are done so at the user's own risk.</p>
