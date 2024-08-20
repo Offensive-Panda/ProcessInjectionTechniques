@@ -5,6 +5,127 @@ layout: default
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offensive-Panda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #333;
+            color: white;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card-content h3 {
+            font-size: 1.2em;
+            margin: 0 0 10px 0;
+        }
+        .card-content p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .windows-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            opacity: 0.7;
+        }
+        .card:hover .card-content p {
+            display: block;
+        }
+        .card-content p {
+            display: none;
+        }
+    </style>
 </head>
+<body>
+
+<header>
+    <h1>Offensive-Panda</h1>
+</header>
+
+<div class="container">
+    <h2>Whoami</h2>
+    <p>I'm Usman Sikander, also known as Offensive-Panda, a cybersecurity enthusiast with a passion for advanced evasion techniques, malware analysis, and adversary emulation. I specialize in bypassing EDR/XDR systems and validating security postures through APT simulations.</p>
+</div>
+
+<div class="container">
+    <h2>Purpose</h2>
+    <p>This page serves as a resource for cybersecurity professionals and enthusiasts. It provides insights into advanced techniques for process injection, shellcode execution, and other red team activities to help strengthen security controls.</p>
+</div>
+
+<div class="container">
+    <h2>Shellcode</h2>
+    <p>Shellcode is a small piece of code used as the payload in the exploitation of software vulnerabilities. It’s often written in assembly language and is crucial for the execution of further exploits or backdoor installation.</p>
+</div>
+
+<div class="container">
+    <h2>Process Injection Series</h2>
+    <div class="card-container">
+        <!-- Example of a Card -->
+        <a href="pe1.html" class="card">
+            <img src="pe1.jpg" alt="Process Injection Technique Image">
+            <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
+            <div class="card-content">
+                <h3>PE 1 - Technique Name</h3>
+                <p>This is a brief description of the PE 1 technique.</p>
+            </div>
+        </a>
+        <!-- Repeat for PE 2 to PE 22 -->
+    </div>
+</div>
+
 </body>
 </html>
