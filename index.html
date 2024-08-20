@@ -28,13 +28,13 @@ layout: default
             margin: 20px auto;
             padding: 20px;
         }
-        h2 {
+        .content-section h2 {
             color: #fff;
             border-bottom: 2px solid #fff;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        p {
+        .content-section p {
             line-height: 1.6;
             color: #ccc;
         }
@@ -45,49 +45,46 @@ layout: default
             justify-content: center;
         }
         .card {
-            width: 300px;
+            width: 100%;
+            max-width: 600px;
             background-color: #fff;
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.3s;
             position: relative;
+            padding: 20px;
             color: #000;
+            transition: transform 0.3s;
         }
         .card:hover {
             transform: scale(1.05);
         }
-        .card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .card-content {
-            padding: 20px;
-        }
-        .card-content h3 {
-            font-size: 1.2em;
-            margin: 0 0 10px 0;
+        .card h3 {
+            font-size: 1.5em;
+            margin: 0;
+            margin-bottom: 10px;
             color: #000;
         }
-        .card-content p {
-            font-size: 0.9em;
-            color: #555;
+        .card img.technique-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            float: left;
+            margin-right: 20px;
         }
-        .windows-icon {
+        .card img.windows-icon {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             width: 24px;
             height: 24px;
             opacity: 0.7;
         }
-        .card:hover .card-content p {
-            display: block;
-        }
-        .card-content p {
-            display: none;
+        .card p {
+            font-size: 1em;
+            color: #555;
+            margin-left: 120px;
         }
     </style>
 </head>
@@ -100,14 +97,10 @@ layout: default
 <div class="content-section">
     <h2>Whoami</h2>
     <p>I'm Usman Sikander, also known as Offensive-Panda, a cybersecurity enthusiast with a passion for advanced evasion techniques, malware analysis, and adversary emulation. I specialize in bypassing EDR/XDR systems and validating security postures through APT simulations.</p>
-</div>
 
-<div class="content-section">
     <h2>Purpose</h2>
     <p>This page serves as a resource for cybersecurity professionals and enthusiasts. It provides insights into advanced techniques for process injection, shellcode execution, and other red team activities to help strengthen security controls.</p>
-</div>
 
-<div class="content-section">
     <h2>Shellcode</h2>
     <p>Shellcode is a small piece of code used as the payload in the exploitation of software vulnerabilities. It’s often written in assembly language and is crucial for the execution of further exploits or backdoor installation.</p>
 </div>
@@ -117,12 +110,10 @@ layout: default
     <div class="card-container">
         <!-- Example of a Card -->
         <a href="pe1.html" class="card">
-            <img src="pe1.png" alt="Process Injection Technique Image">
+            <h3>PE 1 - Technique Name</h3>
+            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <div class="card-content">
-                <h3>PE 1 - Technique Name</h3>
-                <p>This is a brief description of the PE 1 technique.</p>
-            </div>
+            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
         </a>
         <!-- Repeat for PE 2 to PE 22 -->
     </div>
