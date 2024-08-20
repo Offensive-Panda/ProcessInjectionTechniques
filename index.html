@@ -108,166 +108,158 @@ layout: default
     <div class="card-container">
         <!-- Example of a Card -->
         <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 1 - Classic Code Injection Local Process</h3>
+            <img src="classic-local.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects code into a local process’s memory space, allowing the code to be executed within the context of that process.</p>
         </a>
 
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
+            <h3>PE 2 - Classic Code Injection Remote Process</h3>
+            <img src="classic-remote.jpg" alt="Technique Image" class="technique-image">
+            <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
+            <p>Injects code into a remote process’s memory space, enabling the injected code to run in the context of that process..</p>
+        </a>
+           
+            <a href="pe1.html" class="card">
+            <h3>PE 3 - Classic Code Injection with API Obfuscation</h3>
             <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects code into a process while obfuscating API calls to avoid detection by security mechanisms.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 4 - Classic Code Injection VirtualProtect</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
-        </a>
-           
-            <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
-            <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses the VirtualProtect API to modify memory protection attributes, allowing code injection into a process.</p>
         </a>
 
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 5 - Classic DLL Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects a DLL into a process’s address space, allowing the DLL to be executed within that process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 6 - Reflective DLL Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions.</p>
         </a>
         
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 7 - Reflective DLL Loading (Lagos Island)</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Manually loads the ntdll.dll from server into memroy resolves APIs dynamically and Injection shellcode bypassing user-mode EDR hooks. </p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 8 - PE Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects a Portable Executable (PE) file into a process, allowing the PE file to be executed within the target process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
+            <h3>PE 9 - AddressofEntryPoint Injection</h3>
             <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Injects code into a process by modifying the entry point address of the target executable using WPM magic.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 10 - APC Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses Asynchronous Procedure Calls (APCs) to execute code within the context of a target process's thread.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 11 - Early Bird Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p> Injects code into a process early in its execution, often during process initialization.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 12 - RWX Hunting Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>TSearches for memory regions with Read-Write-Execute (RWX) permissions to inject and execute code.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 13 - Doppelganging Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Exploits the Windows file system to inject code by manipulating legitimate processes and file operations.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 14 - NtCreateThread and Map View</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses the NtCreateThread and NtMapViewOfSection functions to inject and execute code in a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 15 - Mokingjay</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Loads vulnerable DLL with RWX memory region and injection shellcode using it in local process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 16 - Fork API Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses the Fork API to create a child process and then injects code into it.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 17 - Injection through Fibers</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Utilizes fibers, a lightweight thread-like construct in Windows, to execute injected code.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 18 - NT API Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses low-level NT Native API functions to inject code into a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 19 - Direct Syscalls</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Executes system calls directly to perform operations like code injection, bypassing standard Windows API functions.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 20 - Indirect Syscalls</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Uses indirect methods to perform system calls for code injection.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 21 - PEB Walk Injection</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
+            <p>Walks through the Process Environment Block (PEB) to locate and inject code into a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 22 - PEB Walk and Obfuscation Technique</h3>
+            <img src="PE.jpg" alt="Technique Image" class="technique-image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
-        </a>
-        
-            <a href="pe1.html" class="card">
-            <h3>PE 1 - Technique Name</h3>
-            <img src="pe1-small.jpg" alt="Technique Image" class="technique-image">
-            <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>This is a brief description of the PE 1 technique. It explains how the technique works and what it’s used for in a cybersecurity context.</p>
-        </a>
-        <!-- Repeat for PE 2 to PE 22 -->
+            <p>ombines PEB walking with obfuscation techniques to inject code while evading detection..</p>
+     
     </div>
 </div>
 <div class="disclaimer">
