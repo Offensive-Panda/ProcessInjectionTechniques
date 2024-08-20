@@ -11,7 +11,8 @@ layout: default
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
@@ -21,23 +22,21 @@ layout: default
             background-color: #333;
             color: white;
         }
-        .container {
+        .content-section {
             width: 90%;
             max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
         }
         h2 {
-            color: #333;
-            border-bottom: 2px solid #333;
+            color: #fff;
+            border-bottom: 2px solid #fff;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
         p {
             line-height: 1.6;
+            color: #ccc;
         }
         .card-container {
             display: flex;
@@ -54,6 +53,7 @@ layout: default
             overflow: hidden;
             transition: transform 0.3s;
             position: relative;
+            color: #000;
         }
         .card:hover {
             transform: scale(1.05);
@@ -69,6 +69,7 @@ layout: default
         .card-content h3 {
             font-size: 1.2em;
             margin: 0 0 10px 0;
+            color: #000;
         }
         .card-content p {
             font-size: 0.9em;
@@ -96,27 +97,27 @@ layout: default
     <h1>Offensive-Panda</h1>
 </header>
 
-<div class="container">
+<div class="content-section">
     <h2>Whoami</h2>
     <p>I'm Usman Sikander, also known as Offensive-Panda, a cybersecurity enthusiast with a passion for advanced evasion techniques, malware analysis, and adversary emulation. I specialize in bypassing EDR/XDR systems and validating security postures through APT simulations.</p>
 </div>
 
-<div class="container">
+<div class="content-section">
     <h2>Purpose</h2>
     <p>This page serves as a resource for cybersecurity professionals and enthusiasts. It provides insights into advanced techniques for process injection, shellcode execution, and other red team activities to help strengthen security controls.</p>
 </div>
 
-<div class="container">
+<div class="content-section">
     <h2>Shellcode</h2>
     <p>Shellcode is a small piece of code used as the payload in the exploitation of software vulnerabilities. It’s often written in assembly language and is crucial for the execution of further exploits or backdoor installation.</p>
 </div>
 
-<div class="container">
+<div class="content-section">
     <h2>Process Injection Series</h2>
     <div class="card-container">
         <!-- Example of a Card -->
         <a href="pe1.html" class="card">
-            <img src="pe1.jpg" alt="Process Injection Technique Image">
+            <img src="pe1.png" alt="Process Injection Technique Image">
             <img src="windows-icon.png" class="windows-icon" alt="Windows Icon">
             <div class="card-content">
                 <h3>PE 1 - Technique Name</h3>
@@ -129,3 +130,4 @@ layout: default
 
 </body>
 </html>
+
