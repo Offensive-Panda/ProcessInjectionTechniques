@@ -154,13 +154,16 @@ layout: default
         <div class="heatmap-item" data-tooltip="Uses VirtualProtect to modify memory protection and inject code.">Classic Code Injection VirtualProtect</div>
         <div class="heatmap-item" data-tooltip="Injects a DLL into a process’s address space.">Classic DLL Injection</div>
         <div class="heatmap-item" data-tooltip="Injects and loads a DLL into memory without standard API functions.">Reflective DLL Injection</div>
-        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions..">Reflective DLL Loading (Lagos Island)</div>
+        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions.">Reflective DLL Loading (Lagos Island)</div>
+        <div class="heatmap-item" data-tooltip="Creates a process in a suspended state, replaces its code with malicious code">Process Hollowing</div>
         <div class="heatmap-item" data-tooltip="Injects a PE file into a process for execution.">PE Injection</div>
         <div class="heatmap-item" data-tooltip="Modifies the entry point address of an executable for code injection.">AddressOfEntryPoint Injection</div>
         <div class="heatmap-item" data-tooltip="Uses APCs to execute code within a process’s thread.">APC Injection</div>
         <div class="heatmap-item" data-tooltip="Injects code early in the process’s execution.">Early Bird Injection</div>
         <div class="heatmap-item" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting Injection</div>
         <div class="heatmap-item" data-tooltip="Exploits file system operations for code injection.">Doppelganging Injection</div>
+        <div class="heatmap-item" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
+        <div class="heatmap-item" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
         <div class="heatmap-item" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateThread and Map View</div>
         <div class="heatmap-item" data-tooltip="Advanced injection technique with sophisticated methods.">Mokingjay</div>
         <div class="heatmap-item" data-tooltip="Uses the Fork API to create a child process and inject code.">Fork API Injection</div>
@@ -168,8 +171,6 @@ layout: default
         <div class="heatmap-item" data-tooltip="Uses low-level NT Native API functions for code injection.">NT API Injection</div>
         <div class="heatmap-item" data-tooltip="Executes system calls directly for code injection.">Direct Syscalls</div>
         <div class="heatmap-item" data-tooltip="Uses indirect methods like function pointers for system calls.">Indirect Syscalls</div>
-        <div class="heatmap-item" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
-        <div class="heatmap-item" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
     </div>
 </div>
 <div class="content-section">
@@ -224,44 +225,50 @@ layout: default
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Manually loads the ntdll.dll from server into memroy resolves APIs dynamically and Injection shellcode bypassing user-mode EDR hooks. </p>
         </a>
+        <a href="pe1.html" class="card">
+            <h3>PE 8 -Process Hollowing</h3>
+            <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
+            <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
+            <p>Creates a process in a suspended state, replaces its code with malicious code, and resumes it, causing the process to execute the injected code while appearing legitimate. </p>
+        </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 8 - PE Injection</h3>
+            <h3>PE 9 - PE Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Injects a Portable Executable (PE) file into a process, allowing the PE file to be executed within the target process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 9 - AddressofEntryPoint Injection</h3>
+            <h3>PE 10 - AddressofEntryPoint Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Injects code into a process by modifying the entry point address of the target executable using WPM magic.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 10 - APC Injection</h3>
+            <h3>PE 11 - APC Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Uses Asynchronous Procedure Calls (APCs) to execute code within the context of a target process's thread.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 11 - Early Bird Injection</h3>
+            <h3>PE 12 - Early Bird Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p> Injects code into a process early in its execution, often during process initialization.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 12 - RWX Hunting Injection</h3>
+            <h3>PE 13 - RWX Hunting Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Searches for memory regions with Read-Write-Execute (RWX) permissions to inject and execute code.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 13 - Doppelganging Injection</h3>
+            <h3>PE 14 - Doppelganging Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Exploits the Windows file system to inject code by manipulating legitimate processes and file operations.</p>
@@ -269,63 +276,63 @@ layout: default
           </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 21 - PEB Walk Injection</h3>
+            <h3>PE 15 - PEB Walk Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Walks through the Process Environment Block (PEB) to locate and inject code into a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 22 - PEB Walk and Obfuscation Technique</h3>
+            <h3>PE 16 - PEB Walk and Obfuscation Technique</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Combines PEB walking with obfuscation techniques to inject code while evading detection..</p>
             </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 14 - NtCreateThread and Map View</h3>
+            <h3>PE 17 - NtCreateThread and Map View</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Uses the NtCreateThread and NtMapViewOfSection functions to inject and execute code in a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 15 - Mokingjay</h3>
+            <h3>PE 18 - Mokingjay</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Loads vulnerable DLL with RWX memory region and injection shellcode using it in local process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 16 - Fork API Injection</h3>
+            <h3>PE 19 - Fork API Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Uses the Fork API to create a child process and then injects code into it.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 17 - Injection through Fibers</h3>
+            <h3>PE 20 - Injection through Fibers</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Utilizes fibers, a lightweight thread-like construct in Windows, to execute injected code.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 18 - NT API Injection</h3>
+            <h3>PE 21 - NT API Injection</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Uses low-level NT Native API functions to inject code into a process.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 19 - Direct Syscalls</h3>
+            <h3>PE 22 - Direct Syscalls</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Executes system calls directly to perform operations like code injection, bypassing standard Windows API functions.</p>
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 20 - Indirect Syscalls</h3>
+            <h3>PE 23 - Indirect Syscalls</h3>
             <img src="Assets/PE.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Uses indirect methods to perform system calls for code injection.</p>
