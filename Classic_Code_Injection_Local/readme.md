@@ -19,7 +19,7 @@ my_sc_mem = VirtualAlloc(0, sc_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READW
 ```
 * `VirtualAlloc()` Allocates a memory region in the virtual address space of the calling process.
 * `0` The desired starting address of the allocated region. By specifying 0, the function lets the system determine the location of the allocated memory.
-* `sizeof sc` The size of the memory to be allocated, which is the size of the shellcode array (sc).
+* `sc_len` The size of the memory to be allocated, which is the size of the shellcode array (sc).
 * `MEM_COMMIT` The memory allocation type, indicating that physical storage in the paging file is allocated.
 * `PAGE_EXECUTE_READWRITE` The protection level of the allocated memory, allowing the memory to be read, written, and executed.
 
@@ -31,7 +31,7 @@ memcpy(my_sc_mem, sc, sc_len);
 * `memcpy():` Copies a specified number of bytes from a source to a destination.
 * `my_sc_mem:` The destination address where the shellcode will be copied. This is the memory allocated by VirtualAlloc.
 * `sc:` The source shellcode that needs to be injected.
-* `sizeof sc:` The size of the shellcode in bytes to copy.
+* `sc_len:` The size of the shellcode in bytes to copy.
 
 To execute the shellcode, the code creates a new thread that starts execution at the shellcode's address using CreateThread. The newly created thread runs the shellcode in the same process's address space.
 ```cpp
