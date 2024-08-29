@@ -1,0 +1,6 @@
+﻿  Classic_Code_Injection_Local.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Classic_Code_Injection_Local.vcxproj -> E:\My Directory\PE-DATA\Classic_Code_Injection_Local\x64\Release\Classic_Code_Injection_Local.exe
