@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we cover a classic technique known as shellcode injection. Shellcode injection involves embedding a small, custom set of instructions (shellcode) directly into a process's memory space, allowing the attacker to execute arbitrary code. This technique uses Windows API calls to allocate memory in local Process, write the shellcode to the allocated memory, and then execute it.
+In this lab, we cover classic code injection local technique. This technique uses Windows API calls to allocate memory in local Process, write the shellcode to the allocated memory, and then execute it.
 
 ## Steps Involved in the Technique
 1. `Memory Allocation:` The process allocates memory within its own address space to store the shellcode.
@@ -17,7 +17,7 @@ The code allocates memory in the current process's address space where the shell
 // Allocate a memory buffer for payload with permission RWX
 my_sc_mem = VirtualAlloc(0, sc_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 ```
-* `VirtualAlloc Function` Allocates a region of pages in the virtual address space of the calling process.
+* `VirtualAlloc()` Allocates a memory region in the virtual address space of the calling process.
 * `0` The desired starting address of the allocated region. By specifying 0, the function lets the system determine the location of the allocated memory.
 * `sizeof sc` The size of the memory to be allocated, which is the size of the shellcode array (sc).
 * `MEM_COMMIT` The memory allocation type, indicating that physical storage in the paging file is allocated.
@@ -41,7 +41,7 @@ hthread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)my_sc_mem, 0, 0, 0);
 * `CreateThread():` Creates a new thread to execute within the virtual address space of the calling process.
 * `0:` Security attributes (if NULL, the handle cannot be inherited).
 * `0:` The initial stack size of the thread. If zero, the stack size specified in the executable is used.
-* `(LPTHREAD_START_ROUTINE)my_sc_mem:` A pointer to the application-defined function to be executed by the thread. Here, the address of the shellcode (exec) is cast to the appropriate function pointer type.
+* `(LPTHREAD_START_ROUTINE)my_sc_mem:` A pointer to the application-defined function to be executed by the thread. Here, the address of the shellcode (my_sc_mem) is cast to the appropriate function pointer type.
 * `0:` The argument to be passed to the thread function. Since shellcode does not expect any arguments, it is set to 0.
 * `0:` Creation flags. If 0, the thread runs immediately after creation.
 * `0:` A pointer to a variable that receives the thread identifier. If NULL, the identifier is not returned.
@@ -55,8 +55,8 @@ if (hthread != NULL) {
 	}
 ```
 * `WaitForSingleObject():` Waits until the specified object is in the signaled state or the time-out interval elapses.
-* `th:` Handle to the thread.
-* `-1:` The time-out interval in milliseconds. -1 specifies an infinite time-out period, meaning it waits indefinitely until the thread has finished executing.
+* `hthread:` Handle to the thread.
+* `500:` The time-out interval in milliseconds. 500 specifies time-out period, meaning it waits for 500ms.
 
 ## Full Code
 ```cpp
@@ -374,7 +374,7 @@ int main(void) {
 
 ![](Assets/cci.gif)
 
-Find Complete Code Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_Local/Classic_Code_Injection_Local)
+For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_Local/Classic_Code_Injection_Local)
 
 ### Disclaimer
 The content provided on this series is for educational and informational purposes only. It is intended to help users understand cybersecurity concepts and techniques for improving security defenses!
