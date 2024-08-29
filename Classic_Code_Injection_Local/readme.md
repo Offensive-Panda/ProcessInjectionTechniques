@@ -7,9 +7,9 @@
 In this lab, we cover a classic technique known as shellcode injection. Shellcode injection involves embedding a small, custom set of instructions (shellcode) directly into a process's memory space, allowing the attacker to execute arbitrary code. This technique uses Windows API calls to allocate memory in local Process, write the shellcode to the allocated memory, and then execute it.
 
 ## Steps Involved in the Technique
-1. `Memory Allocation` The process allocates memory within its own address space to store the shellcode.
-2. `Writing Shellcode to Memory` The shellcode is written to the newly allocated memory region.
-3. `Executing the Shellcode` A new thread is created to execute the shellcode.
+1. `Memory Allocation:` The process allocates memory within its own address space to store the shellcode.
+2. `Writing Shellcode to Memory:` The shellcode is written to the newly allocated memory region.
+3. `Executing the Shellcode:` A new thread is created to execute the shellcode.
 
 ## Walkthrough
 The code allocates memory in the current process's address space where the shellcode can be placed and later executed. The `VirtualAlloc` function from the Windows API is commonly used for this purpose.
@@ -28,23 +28,23 @@ Once the memory is allocated, the shellcode is copied into this memory region. T
 // copy payload to allocated buffer using memcpy(), you can also use RtlMoveMemory()
 memcpy(my_sc_mem, sc, sc_len);
 ```
-* `memcpy Function` Copies a specified number of bytes from a source to a destination.
-* `exec` The destination address where the shellcode will be copied. This is the memory allocated by VirtualAlloc.
-* `sc` The source shellcode that needs to be injected.
-* `sizeof sc` The size of the shellcode in bytes to copy.
+* `memcpy():` Copies a specified number of bytes from a source to a destination.
+* `my_sc_mem:` The destination address where the shellcode will be copied. This is the memory allocated by VirtualAlloc.
+* `sc:` The source shellcode that needs to be injected.
+* `sizeof sc:` The size of the shellcode in bytes to copy.
 
 To execute the shellcode, the code creates a new thread that starts execution at the shellcode's address using CreateThread. The newly created thread runs the shellcode in the same process's address space.
 ```cpp
  // run shellcode
 hthread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)my_sc_mem, 0, 0, 0);
 ```
-* `CreateThread Function:` Creates a new thread to execute within the virtual address space of the calling process.
-* `0` Security attributes (if NULL, the handle cannot be inherited).
-* `0` The initial stack size of the thread. If zero, the stack size specified in the executable is used.
-* `(LPTHREAD_START_ROUTINE)exec` A pointer to the application-defined function to be executed by the thread. Here, the address of the shellcode (exec) is cast to the appropriate function pointer type.
-* `0` The argument to be passed to the thread function. Since shellcode does not expect any arguments, it is set to 0.
-* `0` Creation flags. If 0, the thread runs immediately after creation.
-* `0` A pointer to a variable that receives the thread identifier. If NULL, the identifier is not returned.
+* `CreateThread():` Creates a new thread to execute within the virtual address space of the calling process.
+* `0:` Security attributes (if NULL, the handle cannot be inherited).
+* `0:` The initial stack size of the thread. If zero, the stack size specified in the executable is used.
+* `(LPTHREAD_START_ROUTINE)my_sc_mem:` A pointer to the application-defined function to be executed by the thread. Here, the address of the shellcode (exec) is cast to the appropriate function pointer type.
+* `0:` The argument to be passed to the thread function. Since shellcode does not expect any arguments, it is set to 0.
+* `0:` Creation flags. If 0, the thread runs immediately after creation.
+* `0:` A pointer to a variable that receives the thread identifier. If NULL, the identifier is not returned.
 
 Finally, the code waits for the thread to complete using WaitForSingleObject, ensuring that the injected shellcode has finished execution before proceeding or exiting.
 ```cpp
@@ -54,9 +54,9 @@ if (hthread != NULL) {
 		return 0;
 	}
 ```
-* `WaitForSingleObject Function` Waits until the specified object is in the signaled state or the time-out interval elapses.
-* `th` Handle to the thread.
-* `-1` The time-out interval in milliseconds. -1 specifies an infinite time-out period, meaning it waits indefinitely until the thread has finished executing.
+* `WaitForSingleObject():` Waits until the specified object is in the signaled state or the time-out interval elapses.
+* `th:` Handle to the thread.
+* `-1:` The time-out interval in milliseconds. -1 specifies an infinite time-out period, meaning it waits indefinitely until the thread has finished executing.
 
 ## Full Code
 ```cpp
