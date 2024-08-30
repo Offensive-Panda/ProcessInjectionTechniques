@@ -1,0 +1,1 @@
+x86_64-w64-mingw32-gcc PandaDLL.cpp -o panda.dll -lntdll -s -DBUILD_DLL -shared
