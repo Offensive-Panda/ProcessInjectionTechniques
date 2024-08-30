@@ -9,7 +9,7 @@ In this lab, we explore a DLL injection technique that targets a process (in thi
 ## Steps
 1. `Identify the Target Process:` `Toolhelp32` functions to enumerate running processes and identify the target process ID by its name.
 2. `Allocate Memory in the Target Process:` `VirtualAllocEx` function to allocate memory in the target process's address space.
-4. `Write Shellcode to the Allocated Memory:` `WriteProcessMemory` to Write the path of the `panda.dll` to be injected into this memory.
+4. `Write DLl path to the Allocated Memory:` `WriteProcessMemory` to Write the path of the `panda.dll` to be injected into this memory.
 5. `Create a Remote Thread to Execute the Shellcode:` `CreateRemoteThread` Creates a remote thread in `explorer.exe` that executes `LoadLibraryA`, loading the `panda.dll` into the `explorer.exe` process's memory space.
 
 ## Walkthrough
