@@ -202,7 +202,7 @@ layout: default
             <h3>PE 4 - Classic Code Injection VirtualProtect</h3>
             <img src="Assets/ccvp_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>In this lab, we cover classic code injection in remote process using VirtualProtect. This is the same technique, we discussed in last lab but one extra step is involved in this lab which is to change the permission of allocated memory with Windows API VirtualProtect. Allocating RWX region at a same time is great indicator for AV/EDR solutions, so to avoid RWX region detection, we first create RW region and before executing shellcode we change it to RX. This method involves creating a new thread in a remote process and executing the payload or shellcode within that context. This is often done using Windows API functions such as OpenProcess, VirtualAllocEx, WriteProcessMemory, VirtualProtect and CreateRemoteThread.</p>
+            <p>In this lab, we cover classic code injection in remote process using VirtualProtect. This is the same technique, we discussed in last lab but one extra step is involved in this lab which is to change the permission of allocated memory with Windows API VirtualProtect. Allocating RWX region at a same time is great indicator for AV/EDR solutions, so to avoid RWX region detection, we first create RW and before executing shellcode we change it to RX.</p>
         </a>
 
             <a href="pe1.html" class="card">
