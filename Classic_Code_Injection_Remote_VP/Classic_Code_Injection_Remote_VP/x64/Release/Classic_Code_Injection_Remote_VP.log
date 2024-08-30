@@ -1,0 +1,7 @@
+﻿  Classic_Code_Injection_Remote_VP.cpp
+C:\Users\DARKN3T\source\repos\Classic_Code_Injection_Remote_VP\Classic_Code_Injection_Remote_VP\Classic_Code_Injection_Remote_VP.cpp(316,9): warning C4101: 'handle': unreferenced local variable
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 110 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Classic_Code_Injection_Remote_VP.vcxproj -> C:\Users\DARKN3T\source\repos\Classic_Code_Injection_Remote_VP\x64\Release\Classic_Code_Injection_Remote_VP.exe

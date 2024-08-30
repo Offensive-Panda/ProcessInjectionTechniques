@@ -1,0 +1,7 @@
+﻿  Source.cpp
+C:\Users\redte\Downloads\Telegram Desktop\PE-DATA\PE-DATA\Classic_Code_Injection_Remote\Classic_Code_Injection_Remote\Source.cpp(316,9): warning C4101: 'handle': unreferenced local variable
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 109 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Classic_Code_Injection_Remote.vcxproj -> C:\Users\redte\Downloads\Telegram Desktop\PE-DATA\PE-DATA\Classic_Code_Injection_Remote\x64\Release\Classic_Code_Injection_Remote.exe
