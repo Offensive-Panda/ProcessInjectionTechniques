@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we cover classic code injection in remote process using VirtualProtect. This is the same technique, we discussed in last lab but one extra step involved is involved in this lab which is to change the permission of allocated memory with Windows API `VirtualProtect`. Allocating `RWX` region at a same time is great indicator for AV/EDR solutions, so to avoid RWX region detection, we first create `RW` region and before executing shellcode we change it to `RX`. This method involves creating a new thread in a remote process and executing the payload or shellcode within that context. This is often done using Windows API functions such as `OpenProcess`, `VirtualAllocEx`, `WriteProcessMemory`, `VirtualProtect` and `CreateRemoteThread`.
+In this lab, we cover classic code injection in remote process using VirtualProtect. This is the same technique, we discussed in last lab but one extra step is involved in this lab which is to change the permission of allocated memory with Windows API `VirtualProtect`. Allocating `RWX` region at a same time is great indicator for AV/EDR solutions, so to avoid RWX region detection, we first create `RW` region and before executing shellcode we change it to `RX`. This method involves creating a new thread in a remote process and executing the payload or shellcode within that context. This is often done using Windows API functions such as `OpenProcess`, `VirtualAllocEx`, `WriteProcessMemory`, `VirtualProtect` and `CreateRemoteThread`.
 
 ## Steps
 1. `Identify the Target Process:` `Toolhelp32` functions to enumerate running processes and identify the target process by its name.
