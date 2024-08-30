@@ -181,42 +181,42 @@ layout: default
             <h3>PE 1 - Classic Code Injection Local Process</h3>
             <img src="Assets/classic-local.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects code into a local process’s memory space, allowing the code to be executed within the context of that process.</p>
+            <p>In this lab, we cover classic code injection in local process technique. This technique uses Windows API calls to allocate memory in local Process, write the shellcode to the allocated memory, and then execute it.</p>
         </a>
 
             <a href="pe1.html" class="card">
             <h3>PE 2 - Classic Code Injection Remote Process</h3>
             <img src="Assets/classic-remote.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects code into a remote process’s memory space, enabling the injected code to run in the context of that process..</p>
+            <p>In this lab, we cover classic code injection in remote process. This is one of the most straightforward forms of process injection technique also known as Remote Thread Injection. This method involves creating a new thread in a remote process and executing the payload or shellcode within that context. This is often done using Windows API functions such as OpenProcess, VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread.</p>
         </a>
            
             <a href="pe1.html" class="card">
             <h3>PE 3 - Classic Code Injection with API Obfuscation</h3>
             <img src="Assets/api-obf.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects code into a process while obfuscating API calls to avoid detection by security mechanisms.</p>
+            <p>In this lab, we cover the remote thread injection technique with APIs obfuscation. To evade static detection mechanisms used by AV/EDR solutions, we will implement API call obfuscation throughout the process. By the end of this lab, we'll demonstrate the difference in the import table of a sample program both before and after API obfuscation, highlighting how these changes can help to bypass static analysis.</p>
         </a>
            
             <a href="pe1.html" class="card">
             <h3>PE 4 - Classic Code Injection VirtualProtect</h3>
             <img src="Assets/ccvp_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses the VirtualProtect API to modify memory protection attributes, allowing code injection into a process.</p>
+            <p>In this lab, we cover classic code injection in remote process using VirtualProtect. This is the same technique, we discussed in last lab but one extra step is involved in this lab which is to change the permission of allocated memory with Windows API VirtualProtect. Allocating RWX region at a same time is great indicator for AV/EDR solutions, so to avoid RWX region detection, we first create RW region and before executing shellcode we change it to RX. This method involves creating a new thread in a remote process and executing the payload or shellcode within that context. This is often done using Windows API functions such as OpenProcess, VirtualAllocEx, WriteProcessMemory, VirtualProtect and CreateRemoteThread.</p>
         </a>
 
             <a href="pe1.html" class="card">
             <h3>PE 5 - Classic DLL Injection</h3>
             <img src="Assets/classic-dll.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects a DLL into a process’s address space, allowing the DLL to be executed within that process.</p>
+            <p>In this lab, we cover a DLL injection technique that targets a process (in this case, explorer.exe) to load a malicious DLL (panda.dll) from the Downloads folder. DLL injection is a method used to run arbitrary code within the address space of another process by forcing it to load a dynamic-link library (DLL).</p>
         </a>
            
             <a href="pe1.html" class="card">
             <h3>PE 6 - Reflective DLL Injection</h3>
             <img src="Assets/rdll_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions.</p>
+            <p>In this lab, we cover a Reflective DLL Injection technique. This technique allows to execute code within the context of another process without writing the DLL to disk. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations.</p>
         </a>
         
             <a href="pe1.html" class="card">
