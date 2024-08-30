@@ -1,6 +1,6 @@
 <h1 align="center">Classic Code Injection With APIs Obfuscation</h1>
 <p align="center">
-  <img src="../Assets/api_obf.jpg" alt="CCIROBF" width="500px">
+  <img src="../Assets/api-obf.jpg" alt="CCIROBF" width="500px">
 </p>
 
 ## Overview
