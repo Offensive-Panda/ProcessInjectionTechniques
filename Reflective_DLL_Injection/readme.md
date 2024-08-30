@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we explore a Reflective DLL Injection technique. This technique allows to execute code within the context of another process without writing the DLL to disk. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations. 
+In this lab, we cover a Reflective DLL Injection technique. This technique allows to execute code within the context of another process without writing the DLL to disk. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations. 
 
 ## Steps
 1. `Read the DLL into Memory:` This step involves to read the DLL into memory buffer.
