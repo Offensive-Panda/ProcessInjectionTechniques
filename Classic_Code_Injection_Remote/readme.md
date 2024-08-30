@@ -45,7 +45,7 @@ HANDLE GetProcessHandleByName(const std::wstring& processName) {
 ```
 `VirtualAllocEx` is used to allocate a block of memory in the virtual address space of the target process (explorer.exe). The memory is allocated with `PAGE_EXECUTE_READWRITE` permissions to allow the shellcode to be written and executed.
 ```cpp
-// Allocate a memory buffer for payload with permission RW
+// Allocate a memory buffer for payload with permission RWX
 my_sc_mem = VirtualAllocEx(hProcess, 0, sc_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 ```
 `WriteProcessMemory` writes our shellcode into the allocated memory in the target process.
@@ -390,7 +390,7 @@ int main(int argc, char* argv[]) {
 	if (hProcess) {
 		std::wcout << L"Handle to " << pName << ": " << hProcess << std::endl;
 
-		// Allocate a memory buffer for payload with permission RW
+		// Allocate a memory buffer for payload with permission RWX
 		my_sc_mem = VirtualAllocEx(hProcess, 0, sc_len, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
 		// copy payload to allocated buffer using WriteProcessMemory()
