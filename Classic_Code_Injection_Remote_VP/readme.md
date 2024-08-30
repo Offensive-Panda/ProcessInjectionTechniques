@@ -426,7 +426,7 @@ int main(int argc, char* argv[]) {
 
 ![](Assets/ccir.gif)
 
-For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_Local/Classic_Code_Injection_Remote_VP)
+For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_Remote_VP/Classic_Code_Injection_Remote_VP)
 
 ### Disclaimer
 The content provided on this series is for educational and informational purposes only. It is intended to help users understand cybersecurity concepts and techniques for improving security defenses!
