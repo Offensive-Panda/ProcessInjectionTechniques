@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we explore a DLL injection technique that targets a process (in this case, explorer.exe) to load a malicious DLL (panda.dll) from the Downloads folder. DLL injection is a method used to run arbitrary code within the address space of another process by forcing it to load a dynamic-link library (DLL).
+In this lab, we cover a DLL injection technique that targets a process (in this case, explorer.exe) to load a malicious DLL (panda.dll) from the Downloads folder. DLL injection is a method used to run arbitrary code within the address space of another process by forcing it to load a dynamic-link library (DLL).
 
 ## Steps
 1. `Identify the Target Process:` `Toolhelp32` functions to enumerate running processes and identify the target process ID by its name.
