@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we will explore the remote thread injection technique with APIs obfuscation. To evade static detection mechanisms used by AV/EDR solutions, we will implement API call obfuscation throughout the process. By the end of this lab, we'll demonstrate the difference in the import table of a sample program both before and after API obfuscation, highlighting how these changes can help to bypass static analysis.
+In this lab, we cover the remote thread injection technique with APIs obfuscation. To evade static detection mechanisms used by AV/EDR solutions, we will implement API call obfuscation throughout the process. By the end of this lab, we'll demonstrate the difference in the import table of a sample program both before and after API obfuscation, highlighting how these changes can help to bypass static analysis.
 
 ## Steps
 1. `Identify the Target Process:` `Toolhelp32` functions to enumerate running processes and identify the target process by its name.
