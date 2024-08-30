@@ -1,6 +1,6 @@
 <h1 align="center">Classic Code Injection Remote Process Using VirtualProtect</h1>
 <p align="center">
-  <img src="Assets/ccvp_AI.jpg" alt="CCIRP" width="500px">
+  <img src="../Assets/ccvp_AI.jpg" alt="CCIRP" width="500px">
 </p>
 
 ## Overview
