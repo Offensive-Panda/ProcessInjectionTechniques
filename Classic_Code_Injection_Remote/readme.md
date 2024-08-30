@@ -62,7 +62,6 @@ WriteProcessMemory(hProcess, my_sc_mem, sc, sc_len, NULL);
 			CloseHandle(hthread);
 		}
 ```
-
 ## Full Code
 ```cpp
 #include <windows.h>
