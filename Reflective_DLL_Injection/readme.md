@@ -1,10 +1,10 @@
 <h1 align="center">Reflective DLL Injection</h1>
 <p align="center">
-  <img src="Assets/rdll_AI.jpg" alt="CCIR" width="500px">
+  <img src="../Assets/rdll_AI.jpg" alt="CCIR" width="500px">
 </p>
 
 ## Overview
-In this lab, we explore a Reflective DLL Injection technique. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations. This technique allows to execute code within the context of another process without writing the DLL to disk.
+In this lab, we explore a Reflective DLL Injection technique. This technique allows to execute code within the context of another process without writing the DLL to disk. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations. 
 
 ## Steps
 1. `Read the DLL into Memory:` This step involves to read the DLL into memory buffer.
@@ -153,6 +153,7 @@ This code execute the injected DLL's main entry point (DllMain).
 
 ## Full Code
 ### Loader/Injector Code
+#### data.h
 ```cpp
 #pragma once
 #include <Windows.h>
@@ -170,6 +171,7 @@ typedef struct BASE_RELOCATION_ENTRY {
 using DLLEntry = BOOL(WINAPI*)(HINSTANCE dll, DWORD reason, LPVOID reserved);
 
 ```
+#### source.cpp
 ```cpp
 #include <Windows.h>
 #include <iostream>
