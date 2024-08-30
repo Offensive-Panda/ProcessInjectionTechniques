@@ -1,6 +1,6 @@
-<h1 align="center">Classic Code Injection Remote Process</h1>
+<h1 align="center">Classic DLL Injection</h1>
 <p align="center">
-  <img src="Assets/cdll_AI.jpg" alt="CCIR" width="500px">
+  <img src="../Assets/cdll_AI.jpg" alt="CCIR" width="500px">
 </p>
 
 ## Overview
@@ -98,7 +98,7 @@ DWORD GetProcessIDByName(const std::wstring& processName) {
     return processID;
 }
 ```
-Because the panda.dll is in downloads folder so this function retrieves the path to the current user's Downloads folder.
+Because the `panda.dll` is in downloads folder so this function retrieves the path to the current user's Downloads folder.
 ```cpp
 std::string GetDownloadsFolderPath() {
     PWSTR downloadsPath = NULL;
