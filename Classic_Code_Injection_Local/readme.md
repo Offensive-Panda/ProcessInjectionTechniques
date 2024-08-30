@@ -6,7 +6,7 @@
 ## Overview
 In this lab, we cover classic code injection in local process technique. This technique uses Windows API calls to allocate memory in local Process, write the shellcode to the allocated memory, and then execute it.
 
-## Steps Involved in the Technique
+## Steps
 1. `Memory Allocation:` The process allocates memory within its own address space to store the shellcode.
 2. `Writing Shellcode to Memory:` The shellcode is written to the newly allocated memory region.
 3. `Executing the Shellcode:` A new thread is created to execute the shellcode.
