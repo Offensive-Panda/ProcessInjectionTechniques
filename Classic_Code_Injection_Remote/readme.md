@@ -1,6 +1,6 @@
 <h1 align="center">Classic Code Injection Remote Process</h1>
 <p align="center">
-  <img src="Assets/classic-remote.jpg" alt="CCIR" width="500px">
+  <img src="../Assets/classic-remote.jpg" alt="CCIR" width="500px">
 </p>
 
 ## Overview
