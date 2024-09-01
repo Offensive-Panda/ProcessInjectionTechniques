@@ -56,7 +56,7 @@ This code open and read the DLL file (panda.dll) into memory.
     CloseHandle(hFile);
 ```
 This code parse the `panda.dll` headers and allocate memory in the `local process`.
-* Parse the DOS header `(PIMAGE_DOS_HEADER)` and NT headers `(PIMAGE_NT_HEADERS)` from the DLL buffer.
+*  Parse the DOS header `(PIMAGE_DOS_HEADER)` and NT headers `(PIMAGE_NT_HEADERS)` from the DLL buffer.
 * `VirtualAllocEx:` Allocates memory in the target process for the DLL based on its `ImageBase` and `SizeOfImage` from the NT headers.
 ```cpp
  // Get pointers to in-memory DLL headers
@@ -73,7 +73,7 @@ This code parse the `panda.dll` headers and allocate memory in the `local proces
 ```
  This code copy the `panda.dll` headers and sections from the local buffer to the allocated memory in the `current process`.
 * `WriteProcessMemory:` Copies the headers of the DLL to the allocated memory.
-* Iterates over each section header to copy individual sections of the DLL to their respective locations.
+*  Iterates over each section header to copy individual sections of the DLL to their respective locations.
 ```cpp
  // Copy the DLL image headers and sections to the newly allocated memory
     WriteProcessMemory(hProcess, dllBase, dllBuffer, ntHeaders->OptionalHeader.SizeOfHeaders, NULL);
