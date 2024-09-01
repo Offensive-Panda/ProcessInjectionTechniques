@@ -604,7 +604,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
 
 ## Demonstration
 
-![](Assets/rdll.gif)
+![](Asset/PE6.gif)
 
 For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Reflective_DLL_Injection/Reflective_DLL_Injection)
 

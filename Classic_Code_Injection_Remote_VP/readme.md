@@ -424,7 +424,7 @@ int main(int argc, char* argv[]) {
 
 ## Demonstration
 
-![](Assets/ccir.gif)
+![](Asset/PE4.gif)
 
 For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Classic_Code_Injection_Remote_VP/Classic_Code_Injection_Remote_VP)
 
