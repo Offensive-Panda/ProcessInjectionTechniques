@@ -161,7 +161,9 @@ layout: default
         <div class="heatmap-item" data-tooltip="Uses APCs to execute code within a process’s thread.">APC Injection</div>
         <div class="heatmap-item" data-tooltip="Injects code early in the process’s execution.">Early Bird Injection</div>
         <div class="heatmap-item" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting Injection</div>
-        <div class="heatmap-item" data-tooltip="Exploits file system operations for code injection.">Doppelganging Injection</div>
+        <div class="heatmap-item" data-tooltip="Process Ghosting works by exploiting a gap in how the Windows operating system handles process creation and image loading.">Process Ghosting</div>
+        <div class="heatmap-item" data-tooltip="This technique used to inject malicious code into the address space of another process and execute it by hijacking one of its threads.">Remote Thread Hijacking</div>
+         <div class="heatmap-item" data-tooltip="Execute malicious code within a legitimate process by overwriting the memory of a loaded module (typically a DLL) without altering its disk image.">Module Stomping</div>
         <div class="heatmap-item" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
         <div class="heatmap-item" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
         <div class="heatmap-item" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateThread and Map View</div>
@@ -268,12 +270,23 @@ layout: default
         </a>
            
             <a href="pe1.html" class="card">
-            <h3>PE 14 - Doppelganging Injection</h3>
-            <img src="Assets/dop_AI.jpg" alt="Technique Image" class="technique-image">
+            <h3>PE 14 - Process Ghosting</h3>
+            <img src="Assets/PG_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Exploits the Windows file system to inject code by manipulating legitimate processes and file operations.</p>
+            <p> It is a technique in which an attacker creates a file (malware), mark it for deletion (delete-pending state), copies/maps a malware into the memory (image section), close the handle (which deletes it from the disk), then create a process from the now-fileless section..</p>
         </a>
-          </a>
+               <a href="pe1.html" class="card">
+            <h3>PE 15 - Module Stomping</h3>
+            <img src="Assets/MS_AI.jpg" alt="Technique Image" class="technique-image">
+            <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
+            <p>Module Stomping is a stealthy technique to execute malicious code within a legitimate process by overwriting the memory of a loaded module (typically a DLL) without altering its disk image. </p> 
+               </a>
+         <a href="pe1.html" class="card">
+            <h3>PE 16 - Remote Thread Hijacking</h3>
+            <img src="Assets/RTH_AI.jpg" alt="Technique Image" class="technique-image">
+            <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
+            <p>Remote Thread Hijacking is an advanced code injection technique to inject and execute malicious code within the context of another process by hijacking an existing thread. </p> 
+               </a>
            
             <a href="pe1.html" class="card">
             <h3>PE 15 - PEB Walk Injection</h3>
@@ -339,6 +352,27 @@ layout: default
             </a>
      
     </div>
+</div>
+<div class="references">
+    <h2>References</h2>
+    <ul style="list-style-type: none; padding: 0;">
+        <li style="margin-bottom: 10px;">
+            <a href="https://attack.mitre.org/techniques/T1055/" style="text-decoration: none; color: #007bff;">https://attack.mitre.org/techniques/T1055/</a>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <a href="https://www.linkedin.com/in/usman-sikander13/" style="text-decoration: none; color: #007bff;">https://www.linkedin.com/in/usman-sikander13/</a>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <a href="https://github.com/deepinstinct/Dirty-Vanity" style="text-decoration: none; color: #007bff;">https://github.com/deepinstinct/Dirty-Vanity</a>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <a href="https://www.securityjoes.com/post/process-mockingjay-echoing-rwx-in-userland-to-achieve-code-execution" style="text-decoration: none; color: #007bff;">https://www.securityjoes.com/post/process-mockingjay-echoing-rwx-in-userland-to-achieve-code-execution</a>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <a href="https://www.ired.team/" style="text-decoration: none; color: #007bff;">https://www.ired.team/</a>
+        </li>
+        <!-- Add more references as needed -->
+    </ul>
 </div>
 <div class="disclaimer">
         <h2>Disclaimer</h2>
