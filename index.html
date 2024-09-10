@@ -154,7 +154,7 @@ layout: default
         <div class="heatmap-item" data-tooltip="Uses VirtualProtect to modify memory protection and inject code.">Classic Code Injection VirtualProtect</div>
         <div class="heatmap-item" data-tooltip="Injects a DLL into a process’s address space.">Classic DLL Injection</div>
         <div class="heatmap-item" data-tooltip="Injects and loads a DLL into memory without standard API functions.">Reflective DLL Injection</div>
-        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions.">Unhooking Ntdll.dll (Lagos Island)</div>
+        <div class="heatmap-item" data-tooltip="Injects and loads a DLL into a process’s memory without relying on the traditional Windows API functions.">Unhook NTDLL.DLL (Lagos Island)</div>
         <div class="heatmap-item" data-tooltip="Creates a process in a suspended state, replaces its code with malicious code">Process Hollowing</div>
         <div class="heatmap-item" data-tooltip="Injects a PE file into a process for execution.">PE Injection</div>
         <div class="heatmap-item" data-tooltip="Modifies the entry point address of an executable for code injection.">AddressOfEntryPoint Injection</div>
@@ -222,7 +222,7 @@ layout: default
         </a>
         
             <a href="pe1.html" class="card">
-            <h3>PE 7 - Unhooking Ntdll.dll (Lagos Island)</h3>
+            <h3>PE 7 - Unhook NTDLL.DLL (Lagos Island)</h3>
             <img src="Assets/lagos_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>Manually loads the ntdll.dll from server into memroy resolves APIs dynamically and Injection shellcode bypassing user-mode EDR hooks. </p>
