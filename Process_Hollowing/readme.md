@@ -48,9 +48,8 @@ The `GetThreadContext` function retrieves the context of the main thread of the 
 ```
 The code uses `ReadProcessMemory` to get the base address of the suspended process (the starting address where its memory is loaded).
 *  For x86 (32-bit), the base address is retrieved from `Ebx + 8`. For x64 (64-bit), it's retrieved from `Rdx + (sizeof(SIZE_T) * 2)`. The difference is due to variations in how registers work between the two architectures.
+  
 ```cpp
-  	// Get The Base Address Of The Suspended Process
-	PVOID baseAddress;
 
 #ifdef _X86_ 
 	ReadProcessMemory(procInfo.hProcess, (PVOID)(threadContext->Ebx + 8), &baseAddress, sizeof(PVOID), NULL);
@@ -62,6 +61,7 @@ The code uses `ReadProcessMemory` to get the base address of the suspended proce
 
 ```
 The `NtUnmapViewOfSection` function, retrieved from ntdll.dll, is used to unmap the memory section of the target process. This frees the memory space where the original executable was loaded, so the malicious code can be written there instead.
+
 ```cpp
   // Getting The Address Of NtUnmapViewOfSection And Unmapping All Sections
 	printf("[+] Unmapping the Memory Section of Target Process.\n");
@@ -225,6 +225,7 @@ This code Writes the headers of the malicious PE file into the allocated memory 
 	}
 ```
 This code sets the new entry point of the injected PE file in the thread context of the suspended process. The entry point is where the CPU will start executing the malicious code. `SetThreadContext` sets the modified context, and ResumeThread resumes the thread, allowing the injected code to execute.
+
 ```cpp
 #ifdef _X86_
 	// Write The New Image Base Address
@@ -526,7 +527,7 @@ int main(int argc, char* argv[]) {
 
 
 ```
-##NOTE
+### Note
 During my arsenal preparation, I faced alot of issues while developing process hollowing. The main issue, I noticed with this technique is related to subsystems. Please keep in mind, as per my knowledge if the subsystem of target process is different the subsystem of injected binary then you will face error. So make sure injected binary should has same subsystem as target process. You can change the binary subsystem using any PE editor tool such as (PE-Bear, HxD).
 
 1. IMAGE_SUBSYSTEM_NATIVE (1)
