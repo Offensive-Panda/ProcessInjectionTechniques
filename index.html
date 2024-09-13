@@ -222,99 +222,99 @@ layout: default
             <p>In this lab, we cover a Reflective DLL Injection technique. This technique allows to execute code within the context of another process without writing the DLL to disk. By loading the DLL directly from memory without touching the disk, it evades common detection mechanisms, making it a preferred method for sophisticated malware and offensive security operations.</p>
         </a>
         
-            <a href="pe1.html" class="card">
+            <a href="Reflective_DLL_Loading_Lagos_Island" class="card">
             <h3>PE 7 - Unhook NTDLL.DLL (Lagos Island)</h3>
             <img src="Assets/lagos_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Manually loads the ntdll.dll from server into memroy resolves APIs dynamically and Injection shellcode bypassing user-mode EDR hooks. </p>
+            <p>In this lab, we cover a Reflective DLL Loading technique. This technique to manually load and execute a DLL from disk into memory, often referred to as reflective DLL loading. This is useful in scenarios where loading a DLL without registering it in the process's module list is required, a common tactic in malware evasion and advanced threat emulation. The code manually maps the sections of the DLL into memory, resolves imports and exports, and executes shellcode through NtCreateThreadEx, avoiding standard Windows loader mechanisms. </p>
         </a>
-        <a href="pe1.html" class="card">
+        <a href="Process_Hollowing" class="card">
             <h3>PE 8 -Process Hollowing</h3>
             <img src="Assets/ph_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Creates a process in a suspended state, replaces its code with malicious code, and resumes it, causing the process to execute the injected code while appearing legitimate. </p>
+            <p>In this lab, we cover Process Hollowing Technique. Process Hollowing is a stealthy process injection technique where a legitimate process (usually a system or trusted application) is started in a suspended state, and its memory is replaced with malicious code. The malicious code then executes within the context of the trusted process, evading detection by security solutions that might rely on the legitimacy of the process. </p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="PE_Code_Injection" class="card">
             <h3>PE 9 - PE Injection</h3>
             <img src="Assets/pei_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects a Portable Executable (PE) file into a process, allowing the PE file to be executed within the target process.</p>
+            <p>In this lab, we cover PE (Portable Executable) Injection into another process, specifically targeting explorer.exe. PE injection involves injecting an entire PE (itself) into the memory of a target process and then executing it.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="AddressOfEntryPoint_Code_Injection" class="card">
             <h3>PE 10 - AddressofEntryPoint Injection</h3>
             <img src="Assets/wpm_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Injects code into a process by modifying the entry point address of the target executable using WPM magic.</p>
+            <p>In this lab, we cover AddressOfEntryPoint Injection technique, This lab utilize the AddressOfEntryPoint of process which is RX region and WriteProcessMemory internal magic to change the permission and write the shellcode. This technique is avoiding the usage of VirtualAlloc, VirtualProtect APIs directly inside the code. The working of VirtualProtect will be covered by WPM magic.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="APC_QUEUE_INJECTION" class="card">
             <h3>PE 11 - APC Injection</h3>
             <img src="Assets/apc_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses Asynchronous Procedure Calls (APCs) to execute code within the context of a target process's thread.</p>
+            <p>In this lab, we cover Asynchronous Procedure Call (APC) injection. Asynchronous Procedure Call (APC) injection is a technique used to execute code in the context of another process's thread. This method leverages the Windows APC mechanism, which allows for deferred execution of functions in the context of a thread's execution.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="EarlyBird_Code_Injection" class="card">
             <h3>PE 12 - Early Bird Injection</h3>
             <img src="Assets/ebird_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p> Injects code into a process early in its execution, often during process initialization.</p>
+            <p>In this lab, we cover EarlyBird Injection technique, EarlyBird Injection is a process injection technique used to inject code into a target process early in its lifecycle, often before the process has fully initialized. This technique exploits the fact that the process is in a suspended state, allowing for more control and less detection. EarlyBird Injection allows you to inject code at a much earlier stage compared to APC (Asynchronous Procedure Call) injection, which typically occurs when the thread is running.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="RWX_Hunting_Injection" class="card">
             <h3>PE 13 - RWX Hunting Injection</h3>
             <img src="Assets/rwx_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Searches for memory regions with Read-Write-Execute (RWX) permissions to inject and execute code.</p>
+            <p>In this lab, we cover RWX hunting technique to avoid RWX memory detection of AV/EDR solutions, RWX hunt technique involves locating a target process, identifying writable and executable memory regions within that process, injecting shellcode into the identified memory, and then executing the shellcode. It starts by enumerating processes to find the target by name using functions like NtGetNextProcess and GetProcessImageFileNameA. Once the target process is identified, the code examines its memory regions with VirtualQueryEx to find suitable locations for code injection.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="Process_Ghosting" class="card">
             <h3>PE 14 - Process Ghosting</h3>
             <img src="Assets/PG_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p> It is a technique in which an attacker creates a file (malware), mark it for deletion (delete-pending state), copies/maps a malware into the memory (image section), close the handle (which deletes it from the disk), then create a process from the now-fileless section..</p>
+            <p> In this lab, we cover Process ghosting technique, Process ghosting is a technique in which an attacker creates a file (malware), mark it for deletion (delete-pending state), copies/maps a malware into the memory (image section), close the handle (which deletes it from the disk), then create a process from the now-fileless section.</p>
         </a>
-               <a href="pe1.html" class="card">
+               <a href="Module_Stomping" class="card">
             <h3>PE 15 - Module Stomping</h3>
             <img src="Assets/MS_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Module Stomping is a stealthy technique to execute malicious code within a legitimate process by overwriting the memory of a loaded module (typically a DLL) without altering its disk image. </p> 
+            <p>In this lab, we cover Module stomping technique, module stomping is to inject malicious code into a legitimate process without the usual red flags that traditional injection techniques might raise. Instead of loading custom or suspicious DLLs, attackers overwrite parts of a legitimate module with their own code, effectively hiding in plain sight. </p> 
                </a>
-         <a href="pe1.html" class="card">
+         <a href="Remote_Thread_Hijacking" class="card">
             <h3>PE 16 - Remote Thread Hijacking</h3>
             <img src="Assets/RTH_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Remote Thread Hijacking is an advanced code injection technique to inject and execute malicious code within the context of another process by hijacking an existing thread. </p> 
+            <p>In this lab, we cover Remote Thread Hijacking technique, Remote Thread Hijacking is a method of injecting code into a process by hijacking an existing thread in that process. Unlike traditional code injection methods (e.g., using CreateRemoteThread or NtCreateThreadEx), this technique manipulates an already-running thread to execute malicious payloads. This makes detection harder, as no new thread creation events are logged, and it avoids common anti-malware defenses that monitor thread creation. </p> 
                </a>
            
-            <a href="pe1.html" class="card">
+            <a href="PEB_WALK_INJECTION" class="card">
             <h3>PE 17 - PEB Walk Injection</h3>
             <img src="Assets/peb_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Walks through the Process Environment Block (PEB) to locate and inject code into a process.</p>
+            <p>In this lab, we cover PEB Walk and Injection, By using the PEB, the code directly traverses the list of loaded modules to find kernel32.dll, bypassing static analysis methods that rely on import table inspection. Once kernel32.dll is identified, the technique resolves necessary API functions such as VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread dynamically at runtime.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="PEB_WALK_API_OBFUSCATION" class="card">
             <h3>PE 18 - PEB Walk and Obfuscation Technique</h3>
             <img src="Assets/pebwalk_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Combines PEB walking with obfuscation techniques to inject code while evading detection..</p>
+            <p>In this lab, we cover PEB Walk and API Obfuscation Injection, By using the PEB, the code directly traverses the list of loaded modules to find kernel32.dll, bypassing static analysis methods that rely on import table inspection. Once kernel32.dll is identified, the technique resolves necessary API functions such as VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread dynamically at runtime. This time we are obfuscating all the APIs to avoid string based detection and make it difficult to understand the working of exploit in static analysis.</p>
             </a>
            
-            <a href="pe1.html" class="card">
+            <a href="NtCreateSection_MapViewOfSection" class="card">
             <h3>PE 19 - NtCreateThread and Map View</h3>
             <img src="Assets/ntthreat_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses the NtCreateThread and NtMapViewOfSection functions to inject and execute code in a process.</p>
+            <p>In this lab, we cover NtCreateSection and NtMapViewOfSection code Injection, This code injection technique utilizing Native APIs such as NtCreateSection, NtMapViewOfSection, and RtlCreateUserThread. The process begins by creating a new memory section with read, write, and execute (RWX) protection using NtCreateSection. Subsequently, a view of this section is mapped into the local malicious process with read and write (RW) protection. Simultaneously, the same section is mapped into the target process with read and execute (RX) protection. This strategy avoids the need to allocate memory pages with RWX protection, which might be flagged by some endpoint detection and response (EDR) systems.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="Mokingjay" class="card">
             <h3>PE 20 - Mokingjay</h3>
             <img src="Assets/mok_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Loads vulnerable DLL with RWX memory region and injection shellcode using it in local process.</p>
+            <p>In this lab, we cover Mokingjay code Injection, This code injection technique utilize vulnerable DLLs. Vulnerable DLLs meaning here the DLL which has RWX memory region. So this technique avoid detection of RWX memory allocation which is big indication for security controls. This technique can be self inject or remote inject. In our lab, we use self inject using msys-2.0.dll for our operation.</p>
         </a>
            
             <a href="pe1.html" class="card">
