@@ -1,0 +1,5 @@
+x86_64-w64-mingw32-g++ -m64 -c arsenal.cpp syscalls.c -Wall -shared 
+nasm -f win64 -o syscallsx64stubs.o syscallsx64stubs.nasm
+x86_64-w64-mingw32-g++ *.o -o syscalls.exe -static
+//x86_64-w64-mingw32-g++-strip -s temp.exe -o example.exe
+//rm -rf *.o temp.exe
