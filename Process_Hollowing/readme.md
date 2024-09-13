@@ -528,7 +528,7 @@ int main(int argc, char* argv[]) {
 
 ```
 ### Note
-During my arsenal preparation, I faced alot of issues while developing process hollowing. The main issue, I noticed with this technique is related to subsystems. Please keep in mind, as per my knowledge if the subsystem of target process is different the subsystem of injected binary then you will face error. So make sure injected binary should has same subsystem as target process. You can change the binary subsystem using any PE editor tool such as (PE-Bear, HxD).
+During my arsenal preparation, I faced alot of issues. The main issue, I noticed with this hollowing technique is related to subsystems. Please keep in mind, as per my knowledge if the subsystem of target process is different the subsystem of injected binary then you will face error. So make sure injected binary should have the same subsystem as target process. You can change the binary subsystem using any PE editor tool such as (PE-Bear, HxD).
 
 1. IMAGE_SUBSYSTEM_NATIVE (1)
 2. IMAGE_SUBSYSTEM_WINDOWS_GUI (2)
