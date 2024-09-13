@@ -1,6 +1,6 @@
 <h1 align="center">Indirect Syscalls</h1>
 <p align="center">
-  <img src="../Assets/Indirect_AI.jpg" alt="UH" width="500px">
+  <img src="../Assets/indirect_AI.jpg" alt="UH" width="500px">
 </p>
 
 ## Overview
