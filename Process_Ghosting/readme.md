@@ -1219,7 +1219,7 @@ https://whokilleddb.github.io/blogs/
 
 ![](Asset/PE.gif)
 
-For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Process_Ghosting\Process_Ghosting)
+For GitHub-Repo Click Here: [Offensive-Panda/ProcessInjectionTechniques](https://github.com/Offensive-Panda/ProcessInjectionTechniques/tree/main/Process_Ghosting/Process_Ghosting)
 
 ### Disclaimer
 The content provided on this series is for educational and informational purposes only. It is intended to help users understand cybersecurity concepts and techniques for improving security defenses!
