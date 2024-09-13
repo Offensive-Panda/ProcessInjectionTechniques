@@ -321,39 +321,39 @@ layout: default
             <p>In this lab, we cover Mokingjay code Injection, This code injection technique utilize vulnerable DLLs. Vulnerable DLLs meaning here the DLL which has RWX memory region. So this technique avoid detection of RWX memory allocation which is big indication for security controls. This technique can be self inject or remote inject. In our lab, we use self inject using msys-2.0.dll for our operation.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="DV_NEW" class="card">
             <h3>PE 21 - Fork API Injection</h3>
             <img src="Assets/fork_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses the Fork API to create a child process and then injects code into it.</p>
+            <p>In this lab, we cover Dirty Vanity code Injection, Dirty Vanity is a new code-injection technique that abuses forking, a lesser-known mechanism that exists in Windows operating systems. Forking a process is the act of creating a new process from the calling process. The name fork originates from the UNIX system calls of process creation – fork and exec.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="Injection_Through_Fiber" class="card">
             <h3>PE 22 - Injection through Fibers</h3>
             <img src="Assets/fiber_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Utilizes fibers, a lightweight thread-like construct in Windows, to execute injected code.</p>
+            <p>In this lab, we cover Injection through fibers technique, Fibers are a form of cooperative threading where a single thread can switch between multiple execution contexts (fibers), allowing the program to manually manage which fiber is active at any given time. This technique can be used for executing arbitrary shellcode, especially in situations where the attacker wants to execute the shellcode without creating a new thread.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="NTAPI_Injection" class="card">
             <h3>PE 23 - NT API Injection</h3>
             <img src="Assets/nt_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses low-level NT Native API functions to inject code into a process.</p>
+            <p>In this lab, we cover remote process injection using NT APIs, NT APIs are located inside ntdll.dll which are the last instance can be hooked by AV/EDRs solutions. Before we used windows APIs which are located inside kernel32.dll and well documented. But in this lab, we use undocumented native api's NtOPenProcess, NtAllocateVirtualMemory, NtWriteVirtualMemory, NtCreateRemoteThread to achieve remote process injection.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="DirectSyscalls" class="card">
             <h3>PE 24 - Direct Syscalls</h3>
             <img src="Assets/direct_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Executes system calls directly to perform operations like code injection, bypassing standard Windows API functions.</p>
+            <p>In this lab, we cover remote process injection using direct syscalls, Most of the AV/EDR’s hooked on Windows and Native API’s and redirect the flow of program whenever a application calls these function in order to see the malicious behavior of program. When new process spawned EDR’s load their DLL’s in process memory to inspect the behavior of program. In this lab, we used direct calls which involves direct transit to kernel.</p>
         </a>
            
-            <a href="pe1.html" class="card">
+            <a href="IndirectSyscalls" class="card">
             <h3>PE 25 - Indirect Syscalls</h3>
             <img src="Assets/indirect_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
-            <p>Uses indirect methods to perform system calls for code injection.</p>
+            <p>In this lab, we cover remote process injection using indirect syscalls, Most of the AV/EDR’s detects direct syscalls by looking syscall instruction in stub by static analysis, also syscall and return instructions are normally never executed outside the memory area of ntdll.dll. So these are big indicator for EDRs solutions. The indirect syscall technique is more or less an evolution of the direct syscall technique compared to direct syscalls. </p>
             </a>
      
     </div>

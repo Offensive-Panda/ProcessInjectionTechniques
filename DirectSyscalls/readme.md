@@ -467,8 +467,8 @@ int main(int argc, char* argv[])
 ### Note
 In this lab, we use direct syscalls to bypass AV/EDR user-mode hooks. I'll prefer to read my blogs to better understand the direct syscall technqiues and flow. If you still have any issue, please feel free to ask using github issue or direct linkedIn.
 
-https://medium.com/system-weakness/arsenal-bypass-edrs-xdr-s-and-make-malware-analysis-harder-6fde3e2884a5
-https://medium.com/the-first-digit/av-edr-evasion-using-direct-system-calls-user-mode-vs-kernel-mode-fad2fdfed01a
+[Blog Post 1](https://medium.com/system-weakness/arsenal-bypass-edrs-xdr-s-and-make-malware-analysis-harder-6fde3e2884a5)
+[Blog Post 2](https://medium.com/the-first-digit/av-edr-evasion-using-direct-system-calls-user-mode-vs-kernel-mode-fad2fdfed01a)
 
 
 ## Demonstration

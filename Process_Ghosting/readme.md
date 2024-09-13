@@ -1213,7 +1213,7 @@ int main() {
 ### Note
 For better understanding of this technique, I'll prefer this blog post, but if there is still any confusion then please feel free to contact with using github issues or direct linkedIn.
 
-https://whokilleddb.github.io/blogs/
+[Blog Post](https://whokilleddb.github.io/blogs/)
 
 ## Demonstration
 

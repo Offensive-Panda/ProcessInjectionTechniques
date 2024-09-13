@@ -338,7 +338,7 @@ int main() {
 ### Note
 In this lab, we use PEB structure to resolve APIs dynamically to avoid the static inspection. I will prefer to read my blog post to better understand the impact of previous PEB walk and this PEB walk with API obfuscation techniques.
 
-https://systemweakness.com/peb-walk-avoid-api-calls-inspection-in-iat-by-analyst-and-bypass-static-detection-of-1a2ef9bd4c94
+[Blog Post](https://systemweakness.com/peb-walk-avoid-api-calls-inspection-in-iat-by-analyst-and-bypass-static-detection-of-1a2ef9bd4c94)
 
 ## Demonstration
 

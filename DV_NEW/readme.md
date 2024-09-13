@@ -599,7 +599,7 @@ int main(int argc, char** argv)
 ### Note
 For better understanding of this technique, I'll prefer this blog post, but if there is still any confusion then please feel free to contact with using github issues or direct linkedIn.
 
-https://www.deepinstinct.com/blog/dirty-vanity-a-new-approach-to-code-injection-edr-bypass
+[Blog Post](https://www.deepinstinct.com/blog/dirty-vanity-a-new-approach-to-code-injection-edr-bypass)
 
 ## Demonstration
 
