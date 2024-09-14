@@ -1198,7 +1198,6 @@ BOOL ExecuteGhostProcess(BYTE* shellcode, size_t shellcodeSize) {
 	return TRUE;
 }
 
-
 int main() {
 	size_t bufferSize = 0;
 	BYTE* buffer = LoadExecutableBuffer(bufferSize);
