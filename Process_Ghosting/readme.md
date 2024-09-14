@@ -133,6 +133,7 @@ HANDLE CreateSectionFromPendingDeletion(wchar_t* filePath, BYTE* dataBuffer, siz
 ```
 Launches a new process using the file section created from a deleted file.
 * `NtCreateProcessEx:` Creates a process using the file section, bypassing the need for a physical file on disk.
+  
 ```cpp
 HANDLE LaunchProcessFromSection(HANDLE sectionHandle) {
 	HANDLE processHandle = INVALID_HANDLE_VALUE;
@@ -156,8 +157,10 @@ HANDLE LaunchProcessFromSection(HANDLE sectionHandle) {
 	return processHandle;
 }
 ```
+
 Calculates the entry point address of the loaded process. `NtReadVirtualMemory` reads the remote process’s PEB (Process Environment Block) to get the ImageBaseAddress.
 `RtlImageNTHeader` retrieves the NT header from the payload buffer to find the entry point.
+
 ```cpp
 ULONG_PTR RetrieveEntryPoint(HANDLE processHandle, BYTE* payloadBuffer, PROCESS_BASIC_INFORMATION processInfo) {
 	BYTE imageBuffer[0x1000];
@@ -194,8 +197,11 @@ ULONG_PTR RetrieveEntryPoint(HANDLE processHandle, BYTE* payloadBuffer, PROCESS_
 	return entryPointAddress;
 }
 ```
+
 Executes the ghosted process, writing necessary parameters and executing the process in a new thread.
+
 ```cpp
+
 BOOL ExecuteGhostProcess(BYTE* shellcode, size_t shellcodeSize) {
 	NTSTATUS ntStatus;
 
@@ -331,6 +337,7 @@ BOOL ExecuteGhostProcess(BYTE* shellcode, size_t shellcodeSize) {
 }
 
 ```
+
 ## Full Code
 
 ```cpp
