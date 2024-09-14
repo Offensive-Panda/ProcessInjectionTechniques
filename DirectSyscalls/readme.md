@@ -13,7 +13,7 @@ In this lab, we cover remote process injection using direct syscalls, Most of th
 4. Write Shellcode into allocated memory using direct syscall.
 5. Execute the shellcode using direct syscall.
 
-## Syswhispers2 Commands ASM/Header
+### Syswhispers2 Commands ASM/Header
 ```cpp
 # Export all functions with compatibility for all supported Windows versions (see example-output/).
 py .\syswhispers.py --preset all -o syscalls_all
