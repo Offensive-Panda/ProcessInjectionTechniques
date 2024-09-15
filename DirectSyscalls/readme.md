@@ -4,7 +4,7 @@
 </p>
 
 ## Overview
-In this lab, we cover remote process injection using direct syscalls, Most of the AV/EDR’s hooked on Windows and Native API’s and redirect the flow of program whenever a application calls these function in order to see the malicious behavior of program. When new process spawned EDR’s load their DLL’s in process memory to inspect the behavior of program. In this lab, we used direct calls which involves direct transit to kernel without calling the windows and native api's. We use syswhisper2 in our lab to dyanamically resolve the SSN number. SysWhispers2 use random functions name every time and resolve syscalls dynamically and helps with evasion by generating header/ASM files implants can use to make direct system calls.
+In this lab, we cover remote process injection using direct syscalls, Most of the AV/EDR’s hooked on Windows and Native API’s and redirect the flow of program whenever a application calls these function in order to see the malicious behavior of program. When new process spawned EDR’s load their DLL’s in process memory to inspect the behavior of program. In this lab, we used direct calls which involves direct transit to kernel without calling the windows and native api's. We use [syswhisper2](https://github.com/jthuraisamy/SysWhispers2) in our lab to dyanamically resolve the SSN number. SysWhispers2 use random functions name every time and resolve syscalls dynamically and helps with evasion by generating header/ASM files implants can use to make direct system calls.
 
 ## Steps
 1. Generate header/ASM files using Syswhispers2 which our code can be used to make direct calls.
