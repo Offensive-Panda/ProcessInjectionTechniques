@@ -19,7 +19,7 @@ In this lab, we cover EarlyBird Injection technique, EarlyBird Injection is a pr
 Creates Notepad in a suspended state.
 
 ```cpp
-	// Creating Suspended Process And Mapping a File To Memory
+	// Creating Suspended Process
 	LPSTARTUPINFOA startupInfo = new STARTUPINFOA();
 	PROCESS_INFORMATION procInfo;
 
