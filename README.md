@@ -72,7 +72,6 @@ The content, techniques, and tools provided in this repository are intended sole
 
 ### References
 - https://attack.mitre.org/techniques/T1055/
-- https://www.linkedin.com/in/usman-sikander13/
 - https://github.com/deepinstinct/Dirty-Vanity
 - https://www.securityjoes.com/post/process-mockingjay-echoing-rwx-in-userland-to-achieve-code-execution
 - https://www.ired.team/
