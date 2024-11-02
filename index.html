@@ -165,13 +165,13 @@ layout: default
         <div class="heatmap-item low-intensity" data-tooltip="Modifies the entry point address of an executable for code injection.">AddressOfEntryPoint Injection</div>
         <div class="heatmap-item medium-intensity" data-tooltip="Uses APCs to execute code within a process’s thread.">APC Injection</div>
         <div class="heatmap-item high-intensity" data-tooltip="Injects code early in the process’s execution.">Early Bird Injection</div>
-        <div class="heatmap-item medium-intensity" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting Injection</div>
+        <div class="heatmap-item medium-intensity" data-tooltip="Searches for RWX memory regions to inject and execute code.">RWX Hunting and Injection</div>
         <div class="heatmap-item very-high-intensity" data-tooltip="Process Ghosting works by exploiting a gap in how the Windows operating system handles process creation and image loading.">Process Ghosting</div>
         <div class="heatmap-item low-intensity" data-tooltip="This technique used to inject malicious code into the address space of another process and execute it by hijacking one of its threads.">Remote Thread Hijacking</div>
          <div class="heatmap-item medium-intensity" data-tooltip="Execute malicious code within a legitimate process by overwriting the memory of a loaded module (typically a DLL) without altering its disk image.">Module Stomping</div>
         <div class="heatmap-item low-intensity" data-tooltip="Walks through the PEB to locate and inject code.">PEB Walk Injection</div>
-        <div class="heatmap-item medium-intensity" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and Obfuscation Technique</div>
-        <div class="heatmap-item medium-intensity" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateThread and Map View</div>
+        <div class="heatmap-item medium-intensity" data-tooltip="Combines PEB walking with obfuscation techniques.">PEB Walk and APIs Obfuscation Technique</div>
+        <div class="heatmap-item medium-intensity" data-tooltip="Uses NtCreateThread and NtMapViewOfSection for code injection.">NtCreateSection and NtMapViewOfSection</div>
         <div class="heatmap-item high-intensity" data-tooltip="Advanced injection technique with sophisticated methods.">Mokingjay</div>
         <div class="heatmap-item high-intensity" data-tooltip="Uses the Fork API to create a child process and inject code.">Fork API Injection</div>
         <div class="heatmap-item low-intensity" data-tooltip="Injects code using fibers, a lightweight thread-like construct.">Injection through Fibers</div>
@@ -268,7 +268,7 @@ layout: default
         </a>
            
             <a href="RWX_Hunting_Injection" class="card">
-            <h3>PE 13 - RWX Hunting Injection</h3>
+            <h3>PE 13 - RWX Hunting and Injection</h3>
             <img src="Assets/rwx_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>In this lab, we cover RWX hunting technique to avoid RWX memory detection of AV/EDR solutions, RWX hunt technique involves locating a target process, identifying writable and executable memory regions within that process, injecting shellcode into the identified memory, and then executing the shellcode.</p>
@@ -301,14 +301,14 @@ layout: default
         </a>
            
             <a href="PEB_WALK_API_OBFUSCATION" class="card">
-            <h3>PE 18 - PEB Walk and Obfuscation Technique</h3>
+            <h3>PE 18 - PEB Walk and APIs Obfuscation Technique</h3>
             <img src="Assets/pebwalk_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>In this lab, we cover PEB Walk and API Obfuscation Injection, By using the PEB, the code directly traverses the list of loaded modules to find kernel32.dll, bypassing static analysis methods that rely on import table inspection. Once kernel32.dll is identified, the technique resolves necessary API functions such as VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread dynamically at runtime. </p>
             </a>
            
             <a href="NtCreateSection_MapViewOfSection" class="card">
-            <h3>PE 19 - NtCreateThread and Map View</h3>
+            <h3>PE 19 - NtCreateSection and NtMapViewOfSection</h3>
             <img src="Assets/ntthreat_AI.jpg" alt="Technique Image" class="technique-image">
             <img src="Assets/windows-icon.png" class="windows-icon" alt="Windows Icon">
             <p>In this lab, we cover NtCreateSection and NtMapViewOfSection code Injection, This code injection technique utilizing Native APIs such as NtCreateSection, NtMapViewOfSection. The process begins by creating a new memory section with read, write, and execute (RWX) protection using NtCreateSection.</p>
