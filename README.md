@@ -1,19 +1,84 @@
-<html>
-<body>
-  <div>
-    <h1>
-      <img src="https://github.com/Offensive-Panda/DefenseEvasionTechniques/raw/main/panda.jpg" width="50" height="50" style="margin-right: 15px;">
-      C:\Users\Offensive-Panda>whoami
-    </h1>
-  <p> <B>Usman Sikander</B> (a.k.a Offensive-Panda) is a seasoned security professional passionate to identifying and researching advanced evasion techniques, to develop a comprehensive understanding of threat tactics, techniques, and procedures (TTPs) through in-depth analysis of real-world attack scenarios, prominent Advanced Persistent Threat (APT) campaigns, and emerging evasion tactics for validating security postures through emulations. With a proven track record in developing exploits aligned with MITRE ATT&CK tactics and automating exploit processes, I excel in conducting comprehensive simulations within controlled environments that include all security controls. My primary objective is to identify the weaknesses, mis-configuration, vulnerabilities, validate the security controls, incident response capabilities and identify areas for improvement, deliver detailed threat analysis for proactive threat hunting, providing adversary attack paths, indicators of attack (IOAs), indicators of compromise (IOCs), and actionable mitigation strategies to strengthen and enhance an organisation's detection engineering capabilities.</p>
-    <br>
-    <div align="center">
-      <img src="Assets/PE.jpg" alt="My Setup" width="450" height="450">
-    </div>
-      <h2>
-      [Visit my github page to see the details of each technique](https://offensive-panda.github.io/ProcessInjectionTechniques/)
-    </h2>
-  </div>
-</body>
-</html>
+## Process Injection Series
+--------------------------------------------------
+
+<div align="center">
+  <img width="500px" src="Assets/PE.jpg" />
+</div>
+
+### Introduction
+This comprehensive process injection series is crafted for cybersecurity enthusiasts, researchers, and professionals who aim to stay at the forefront of the field. It serves as a central repository of knowledge, offering in-depth exploration of various process injection techniques used by adversaries.
+
+--------------------------------------------------
+
+### Purpose
+The purpose of the Process Injection Series is to share valuable knowledge with the cybersecurity community, particularly those eager to learn about malware development and advanced evasion techniques. Through this series, I aim to not only expand my own expertise but also provide a centralized resource for all tactics, techniques, and procedures (TTPs) related to process injection. By doing so, I hope to empower others with the skills and understanding needed to navigate and contribute to the evolving landscape of cybersecurity.
+
+--------------------------------------------------
+###  Shellcode
+Throughout the series, I will be using my custom-generated shellcode, which displays a message box with the text "Hello from Offensive Panda." This shellcode serves as a consistent and straightforward payload for demonstrating various process injection techniques. However, you are encouraged to experiment with different shellcodes tailored to your needs, allowing you to explore and apply the concepts in ways that best suit your learning objectives or project requirements.
+
+--------------------------------------------------
+
+### Covering Techniques
+- **Classic Code Injection Local Process**
+- **Classic Code Injection Remote Process**
+- **Classic Code Injection with API obfuscation**
+- **Classic Code Injection using VirtualProtect**
+- **Classic DLL Injection**
+- **Reflective DLL Injection**
+- **Unhook NTDLL.DLL (Lagos Island)**
+- **Process Hollowing**
+- **PE Injection**
+- **AddressOfEntrypoint Injection**
+- **APC Injection**
+- **Early Bird Injection**
+- **RWX Hunting and Injection**
+- **Process Ghosting**
+- **Module Stomping**
+- **Remote Thread Hijacking**
+- **PEB Walk Injection**
+- **PEB Walk and API obfuscation**
+- **NtCreateSection and NtMapViewOfSection**
+- **Mokingjay**
+- **Fork API Injection (Dirty Vanity)**
+- **Injection Through Fibers**
+- **NT APIs Injection**
+- **Direct Syscalls**
+- **Indirect Syscalls**
+  
+--------------------------------------------------
+
+### Benefits
+- **Detailed Explaination:** Step by Step walkthrough of each technique.
+- **Implementation:** Implementation code available for each technique.
+- **Demonstartion:** Demonstration videos available for each technique to understand the execution.
+  
+--------------------------------------------------
+
+### Demo
+The following GIF showing the main page of process injection series.
+![Demo](Assets/Demo.gif)
+
+--------------------------------------------------
+
+### Contact
+For any inquiries or contributions, feel free to reach out to the [ME](https://offensive-panda.github.io/).
+
+--------------------------------------------------
+
+### Disclaimer
+The content, techniques, and tools provided in this repository are intended solely for educational and research purposes within the cybersecurity community. I explicitly disclaim any responsibility for the misuse or unlawful use of the provided materials. Any actions taken based on the information are done so at the user's own risk.
+
+--------------------------------------------------
+
+### References
+- https://attack.mitre.org/techniques/T1055/
+- https://www.linkedin.com/in/usman-sikander13/
+- https://github.com/deepinstinct/Dirty-Vanity
+- https://www.securityjoes.com/post/process-mockingjay-echoing-rwx-in-userland-to-achieve-code-execution
+- https://www.ired.team/
+- https://github.com/jthuraisamy/SysWhispers2
+- https://github.com/klezVirus/SysWhispers3
+- https://github.com/RedTeamOperations/Advanced-Process-Injection-Workshop
+
 
