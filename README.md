@@ -66,7 +66,7 @@ For any inquiries or contributions, feel free to reach out to the [ME](https://o
 --------------------------------------------------
 
 ### Disclaimer
-The content, techniques, and tools provided in this repository are intended solely for educational and research purposes within the cybersecurity community. I explicitly disclaim any responsibility for the misuse or unlawful use of the provided materials. Any actions taken based on the information are done so at the user's own risk.
+The content, techniques, and tools provided in this repository are intended solely for educational and research purposes within the cybersecurity community.
 
 --------------------------------------------------
 
