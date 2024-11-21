@@ -5,7 +5,7 @@
   <img width="500px" src="Assets/PE.jpg" />
 </div>
 
-This comprehensive process injection series is crafted for cybersecurity enthusiasts, researchers, and professionals who aim to stay at the forefront of the field. It serves as a central repository of knowledge, offering in-depth exploration of various process injection techniques used by adversaries.
+This comprehensive process injection series is crafted for cybersecurity enthusiasts, researchers, and professionals who aim to stay at the forefront of the field. It serves as a central repository of knowledge, offering in-depth exploration of various process injection techniques and methods used by adversaries.
 
 --------------------------------------------------
 
