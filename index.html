@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProcessInjectionTechniques — Offensive-Panda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:     #0b0f1a;
+  --surface:#111827;
+  --card:   #161d2e;
+  --border: #1e2d42;
+  --border2:#2a3d56;
+  --green:  #22d87e;
+  --cyan:   #22c5e8;
+  --purple: #a78bfa;
+  --orange: #fb923c;
+  --white:  #f1f5fb;
+  --silver: #c4cfe3;
+  --muted:  #8899bb;
+  --dim:    #4a5e7a;
+  --mono:'JetBrains Mono',monospace;
+  --disp:'Syne',sans-serif;
+  --body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--surface)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:5px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,5vw,80px);
+  background:rgba(11,15,26,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--green);text-decoration:none;letter-spacing:.02em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  color:var(--silver);text-decoration:none;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:7px 14px;border-radius:6px;
+  transition:color .18s,background .18s;
+}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.06)}
+.nav-cta{
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#0b0f1a;background:var(--green);
+  padding:9px 20px;border-radius:7px;text-decoration:none;
+  box-shadow:0 2px 16px rgba(34,216,126,.3);
+  transition:filter .18s,transform .15s;
+}
+.nav-cta:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  padding:90px clamp(16px,5vw,80px) 72px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#0b0f1a 60%,#0d1728 100%);
+}
+.hero-accent{
+  position:absolute;top:-120px;right:-80px;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle,rgba(34,216,126,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-accent2{
+  position:absolute;bottom:-60px;left:40%;width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,rgba(34,197,232,.05) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(34,216,126,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,216,126,.04) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 80% 70% at 60% 0,black 30%,transparent 100%);
+}
+.hero-label{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  color:var(--green);letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-label-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);
+  animation:blink 2s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-h{
+  font-family:var(--disp);font-size:clamp(42px,7vw,88px);
+  font-weight:800;line-height:1;letter-spacing:-.03em;
+  color:var(--white);margin-bottom:10px;
+}
+h1.hero-h .green{color:var(--green)}
+h1.hero-h .fade{color:rgba(241,245,251,.18)}
+.hero-sub{font-size:clamp(15px,1.6vw,17px);color:var(--silver);max-width:560px;line-height:1.78;margin:20px 0 44px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:64px}
+.btn-solid{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:#0b0f1a;
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 28px;border-radius:8px;text-decoration:none;
+  box-shadow:0 4px 20px rgba(34,216,126,.25);
+  transition:filter .18s,transform .15s,box-shadow .18s;
+}
+.btn-solid:hover{filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 8px 32px rgba(34,216,126,.35)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--silver);
+  font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 28px;border-radius:8px;text-decoration:none;
+  border:1px solid var(--border2);
+  transition:border-color .18s,color .18s,background .18s;
+}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(34,197,232,.06)}
+
+/* STATS */
+.stats-row{
+  display:flex;flex-wrap:wrap;gap:0;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;max-width:600px;
+}
+.stat{flex:1;min-width:130px;padding:22px 28px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--green);line-height:1;margin-bottom:5px}
+.stat-l{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── TERMINAL ── */
+.terminal-wrap{padding:0 clamp(16px,5vw,80px) 72px;position:relative;z-index:1}
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.t-bar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dr{background:#ff5f56}.dy{background:#ffbd2e}.dg{background:#27c93f}
+.t-title{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px}
+.t-body{padding:24px 28px;font-family:var(--mono);font-size:13px;line-height:2.1}
+.t-p{color:var(--green);font-weight:600}
+.t-c{color:var(--white)}
+.t-o{color:var(--cyan)}
+.t-g{color:var(--muted)}
+.t-w{color:#fbbf24;font-weight:600}
+.cur{display:inline-block;width:9px;height:15px;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite}
+
+/* ── SECTION SHELL ── */
+.s{padding:88px clamp(16px,5vw,80px)}
+.s-alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sh{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  margin-bottom:52px;padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+.sh-eye{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--green);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+h2.sh-t{font-family:var(--disp);font-size:clamp(22px,3.5vw,32px);font-weight:700;color:var(--white);letter-spacing:-.02em}
+.sh-badge{
+  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--muted);
+  padding:5px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;
+  white-space:nowrap;
+}
+
+/* ── HEATMAP ── */
+.heat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.heat-item{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:14px 16px;display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:12px;font-weight:500;color:var(--silver);
+  transition:all .2s;cursor:default;position:relative;overflow:hidden;
+}
+.heat-item::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--green);transform:scaleY(0);transition:transform .2s;transform-origin:bottom;
+}
+.heat-item:hover{border-color:rgba(34,216,126,.35);color:var(--white);background:rgba(34,216,126,.05);transform:translateX(3px)}
+.heat-item:hover::before{transform:scaleY(1)}
+.hi-n{font-size:10px;color:var(--dim);min-width:22px;font-weight:600}
+
+/* ── CARDS ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:border-color .22s,transform .2s,box-shadow .22s;
+  text-decoration:none;
+}
+.card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.card-img-wrap{position:relative;overflow:hidden;aspect-ratio:16/8;background:var(--surface)}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.card:hover .card-img-wrap img{transform:scale(1.05)}
+.card-img-fade{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(transparent,var(--card));pointer-events:none}
+.card-body{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column}
+.card-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.badge{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:4px}
+.bg{background:rgba(34,216,126,.12);color:var(--green);border:1px solid rgba(34,216,126,.25)}
+.bb{background:rgba(34,197,232,.12);color:var(--cyan);border:1px solid rgba(34,197,232,.25)}
+.bp{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.25)}
+.bo{background:rgba(251,146,60,.12);color:var(--orange);border:1px solid rgba(251,146,60,.25)}
+.card-num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--dim);margin-bottom:6px}
+.card-title{font-family:var(--disp);font-size:15px;font-weight:700;color:var(--white);line-height:1.38;margin-bottom:10px}
+.card-desc{font-size:13px;font-weight:400;color:var(--silver);line-height:1.72;flex:1;margin-bottom:20px}
+.card-link{
+  display:inline-flex;align-items:center;gap:6px;width:fit-content;
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);text-decoration:none;
+  padding:9px 16px;border-radius:7px;border:1px solid rgba(34,216,126,.25);background:rgba(34,216,126,.07);
+  transition:background .18s,border-color .18s,gap .18s;margin-top:auto;
+}
+.card-link::after{content:'→'}
+.card-link:hover{background:rgba(34,216,126,.15);border-color:rgba(34,216,126,.5);gap:10px}
+
+/* ── REFS ── */
+.refs{display:flex;flex-direction:column;gap:8px}
+.ref{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  padding:14px 20px;background:var(--card);border:1px solid var(--border);border-radius:8px;
+  text-decoration:none;color:var(--silver);transition:all .2s;
+}
+.ref:hover{border-color:rgba(34,197,232,.35);color:var(--cyan);background:rgba(34,197,232,.05)}
+.ref-idx{font-size:10px;font-weight:700;color:var(--dim);min-width:22px}
+
+/* ── DISCLAIMER ── */
+.disclaimer{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:12px;padding:26px 30px;display:flex;gap:16px}
+.dis-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.dis-t{font-family:var(--mono);font-size:11px;font-weight:700;color:#f87171;letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.dis-body{font-size:13px;color:var(--silver);line-height:1.75}
+
+/* ── DIVIDER ── */
+.gl{height:1px;background:linear-gradient(90deg,transparent,rgba(34,216,126,.2),transparent);margin:0}
+
+/* ── FOOTER ── */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:44px clamp(16px,5vw,80px)}
+.footer-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.fl-logo{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--green)}
+.fl-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:5px}
+.flinks{display:flex;gap:20px}
+.flink{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--silver);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .18s}
+.flink:hover{color:var(--green)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){.nav-links{display:none}.stats-row{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--border)}.stat:last-child{border-bottom:none}.sh{flex-direction:column;align-items:flex-start}}
+@media(max-width:480px){.card-grid{grid-template-columns:1fr}.heat-grid{grid-template-columns:1fr 1fr}.hero-btns{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,.cur{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo"><span>[</span>&nbsp;Offensive-Panda&nbsp;<span>]</span></a>
+  <ul class="nav-links">
+    <li><a href="#techniques">Techniques</a></li>
+    <li><a href="#series">Series</a></li>
+    <li><a href="#refs">References</a></li>
+  </ul>
+  <a href="https://github.com/Offensive-Panda/ProcessInjectionTechniques" target="_blank" class="nav-cta">⭐ GitHub</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-accent2"></div>
+
+  <div class="hero-label"><span class="hero-label-dot"></span>Open Source Security Research</div>
+
+  <h1 class="hero-h">
+    Process<br>
+    <span class="green">Injection</span><span class="cur"></span><br>
+    <span class="fade">Techniques</span>
+  </h1>
+
+  <p class="hero-sub">Comprehensive process injection series covering 25 techniques used by adversaries — from classic shellcode injection to advanced syscall-based evasion methods for malware researchers and red teamers.</p>
+
+  <div class="hero-btns">
+    <a href="https://github.com/Offensive-Panda/ProcessInjectionTechniques" target="_blank" class="btn-solid">View on GitHub &rarr;</a>
+    <a href="#techniques" class="btn-ghost">Browse Techniques</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">25</div><div class="stat-l">Injection Techniques</div></div>
+    <div class="stat"><div class="stat-n">25</div><div class="stat-l">Lab Writeups</div></div>
+    <div class="stat"><div class="stat-n">Custom</div><div class="stat-l">Shellcode Payload</div></div>
+    <div class="stat"><div class="stat-n">T1055</div><div class="stat-l">MITRE ATT&amp;CK</div></div>
+  </div>
+</section>
+
+<div class="gl"></div>
+
+<!-- ── TERMINAL ── -->
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="t-bar">
+      <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+      <span class="t-title">bash — usman@offensive-panda:~/ProcessInjection</span>
+    </div>
+    <div class="t-body">
+      <div><span class="t-p">$ </span><span class="t-c">./injector.exe --target explorer.exe --technique classic-remote</span></div>
+      <div><span class="t-o">[*] Target PID: 2048 · Opening handle with OpenProcess...</span></div>
+      <div><span class="t-w">[+] Handle obtained</span> <span class="t-g">· Allocating RW memory with VirtualAllocEx...</span></div>
+      <div><span class="t-w">[+] Memory @ 0x7FFF0000</span> <span class="t-g">· Writing shellcode with WriteProcessMemory...</span></div>
+      <div><span class="t-w">[+] 1024 bytes written</span> <span class="t-g">· Changing perms RW→RX with VirtualProtect...</span></div>
+      <div><span class="t-w">[+] CreateRemoteThread</span> <span class="t-g">· Thread ID: 0x3F8 → shellcode executing</span></div>
+      <div style="margin-top:8px"><span class="t-p">$ </span><span class="t-c">ls ./techniques | wc -l</span></div>
+      <div><span class="t-w">25</span> <span class="t-g">techniques indexed</span></div>
+      <div style="margin-top:8px"><span class="t-p">$ </span><span class="t-c">_</span><span class="cur"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="gl"></div>
+
+<!-- ── HEATMAP ── -->
+<section class="s" id="techniques">
+  <div class="sh">
+    <div><div class="sh-eye">Coverage Map</div><h2 class="sh-t">Process Injection Techniques Heatmap</h2></div>
+    <span class="sh-badge">25 techniques</span>
+  </div>
+  <div class="heat-grid">
+    <div class="heat-item"><span class="hi-n">01</span>Classic Code Injection Local</div>
+    <div class="heat-item"><span class="hi-n">02</span>Classic Code Injection Remote</div>
+    <div class="heat-item"><span class="hi-n">03</span>API Obfuscation Injection</div>
+    <div class="heat-item"><span class="hi-n">04</span>VirtualProtect Injection</div>
+    <div class="heat-item"><span class="hi-n">05</span>Classic DLL Injection</div>
+    <div class="heat-item"><span class="hi-n">06</span>Reflective DLL Injection</div>
+    <div class="heat-item"><span class="hi-n">07</span>Unhook NTDLL (Lagos Island)</div>
+    <div class="heat-item"><span class="hi-n">08</span>Process Hollowing</div>
+    <div class="heat-item"><span class="hi-n">09</span>PE Injection</div>
+    <div class="heat-item"><span class="hi-n">10</span>AddressOfEntryPoint Injection</div>
+    <div class="heat-item"><span class="hi-n">11</span>APC Injection</div>
+    <div class="heat-item"><span class="hi-n">12</span>Early Bird Injection</div>
+    <div class="heat-item"><span class="hi-n">13</span>RWX Hunting &amp; Injection</div>
+    <div class="heat-item"><span class="hi-n">14</span>Process Ghosting</div>
+    <div class="heat-item"><span class="hi-n">15</span>Remote Thread Hijacking</div>
+    <div class="heat-item"><span class="hi-n">16</span>Module Stomping</div>
+    <div class="heat-item"><span class="hi-n">17</span>PEB Walk Injection</div>
+    <div class="heat-item"><span class="hi-n">18</span>PEB Walk &amp; APIs Obfuscation</div>
+    <div class="heat-item"><span class="hi-n">19</span>NtCreateSection &amp; NtMapViewOfSection</div>
+    <div class="heat-item"><span class="hi-n">20</span>Mokingjay</div>
+    <div class="heat-item"><span class="hi-n">21</span>Fork API Injection</div>
+    <div class="heat-item"><span class="hi-n">22</span>Injection through Fibers</div>
+    <div class="heat-item"><span class="hi-n">23</span>NT API Injection</div>
+    <div class="heat-item"><span class="hi-n">24</span>Direct Syscalls</div>
+    <div class="heat-item"><span class="hi-n">25</span>Indirect Syscalls</div>
+  </div>
+</section>
+
+<!-- ── SERIES ── -->
+<section class="s s-alt" id="series">
+  <div class="sh">
+    <div><div class="sh-eye">Laboratory Series</div><h2 class="sh-t">Process Injection Series</h2></div>
+    <span class="sh-badge">25 labs</span>
+  </div>
+  <div class="card-grid">
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Classic_Code_Injection_Local" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/classic-local.jpg" alt="Classic Local" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 01</div>
+        <div class="card-badges"><span class="badge bg">Local Process</span><span class="badge bb">Shellcode</span></div>
+        <div class="card-title">Classic Code Injection — Local Process</div>
+        <div class="card-desc">Windows API calls to allocate memory in local process, write shellcode to allocated memory, and execute it within the same process context.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Classic_Code_Injection_Remote" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/classic-remote.jpg" alt="Classic Remote" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 02</div>
+        <div class="card-badges"><span class="badge bb">Remote Thread</span><span class="badge bp">CreateRemoteThread</span></div>
+        <div class="card-title">Classic Code Injection — Remote Process</div>
+        <div class="card-desc">Remote thread injection using OpenProcess, VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread to execute shellcode inside another process.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Classic_Code_Injection_API_Obfuscate" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/api-obf.jpg" alt="API Obfuscation" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 03</div>
+        <div class="card-badges"><span class="badge bo">API Obfuscation</span><span class="badge bg">Static Bypass</span></div>
+        <div class="card-title">Classic Code Injection with API Obfuscation</div>
+        <div class="card-desc">Remote thread injection with API call obfuscation to evade static detection by AV/EDR — demonstrates before/after import table differences.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Classic_Code_Injection_Remote_VP" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/ccvp_AI.jpg" alt="VirtualProtect" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 04</div>
+        <div class="card-badges"><span class="badge bp">VirtualProtect</span><span class="badge bo">RWX Bypass</span></div>
+        <div class="card-title">Classic Code Injection — VirtualProtect</div>
+        <div class="card-desc">Avoid RWX region detection by first allocating RW memory, then changing permissions to RX with VirtualProtect only before shellcode execution.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Classic_DLL_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/classic-dll.jpg" alt="DLL Injection" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 05</div>
+        <div class="card-badges"><span class="badge bb">DLL</span><span class="badge bp">LoadLibrary</span></div>
+        <div class="card-title">Classic DLL Injection</div>
+        <div class="card-desc">Force a target process (explorer.exe) to load a malicious DLL (panda.dll) by injecting the DLL path into remote process memory and calling LoadLibrary.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Reflective_DLL_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/rdll_AI.jpg" alt="Reflective DLL" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 06</div>
+        <div class="card-badges"><span class="badge bg">Fileless</span><span class="badge bb">Reflective</span></div>
+        <div class="card-title">Reflective DLL Injection</div>
+        <div class="card-desc">Execute code within another process by loading a DLL directly from memory without writing to disk, evading disk-based detection mechanisms.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Reflective_DLL_Loading_Lagos_Island" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/lagos_AI.jpg" alt="Lagos Island" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 07</div>
+        <div class="card-badges"><span class="badge bo">Lagos Island</span><span class="badge bg">NTDLL Unhook</span></div>
+        <div class="card-title">Unhook NTDLL.DLL — Lagos Island</div>
+        <div class="card-desc">Manually load and execute a DLL from disk into memory without registering it in the process module list — commonly used for EDR hook removal.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Process_Hollowing" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/ph_AI.jpg" alt="Process Hollowing" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 08</div>
+        <div class="card-badges"><span class="badge bp">Hollowing</span><span class="badge bb">Suspended</span></div>
+        <div class="card-title">Process Hollowing</div>
+        <div class="card-desc">Start a legitimate process in suspended state, unmap its memory, replace it with malicious code, and resume — malware executes under a trusted process identity.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/PE_Code_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/pei_AI.jpg" alt="PE Injection" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 09</div>
+        <div class="card-badges"><span class="badge bb">PE Binary</span><span class="badge bo">Self Inject</span></div>
+        <div class="card-title">PE Injection</div>
+        <div class="card-desc">Inject an entire Portable Executable into another process memory space (targeting explorer.exe) and execute it within the remote process context.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/AddressOfEntryPoint_Code_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/wpm_AI.jpg" alt="Entry Point" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 10</div>
+        <div class="card-badges"><span class="badge bg">WPM Magic</span><span class="badge bb">RX Region</span></div>
+        <div class="card-title">AddressOfEntryPoint Injection</div>
+        <div class="card-desc">Leverage AddressOfEntryPoint (RX region) and WriteProcessMemory to change permissions and write shellcode — avoids VirtualAlloc and VirtualProtect API calls entirely.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/APC_QUEUE_INJECTION" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/apc_AI.jpg" alt="APC Injection" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 11</div>
+        <div class="card-badges"><span class="badge bp">APC Queue</span><span class="badge bo">Thread Context</span></div>
+        <div class="card-title">APC Injection</div>
+        <div class="card-desc">Execute shellcode in another thread's context using the Windows Asynchronous Procedure Call mechanism for deferred function execution.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/EarlyBird_Code_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/ebird_AI.jpg" alt="Early Bird" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 12</div>
+        <div class="card-badges"><span class="badge bg">Early Lifecycle</span><span class="badge bb">APC</span></div>
+        <div class="card-title">Early Bird Injection</div>
+        <div class="card-desc">Inject code at the very start of a process lifecycle before initialization completes, exploiting the suspended state for more control and less detection than standard APC.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/RWX_Hunting_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/rwx_AI.jpg" alt="RWX Hunting" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 13</div>
+        <div class="card-badges"><span class="badge bo">Memory Hunting</span><span class="badge bp">RWX Bypass</span></div>
+        <div class="card-title">RWX Hunting and Injection</div>
+        <div class="card-desc">Locate existing RWX memory regions inside a target process and inject shellcode there — no new memory allocation needed, avoiding RWX allocation detections.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Process_Ghosting" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/PG_AI.jpg" alt="Process Ghosting" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 14</div>
+        <div class="card-badges"><span class="badge bg">Fileless</span><span class="badge bb">Pending Delete</span></div>
+        <div class="card-title">Process Ghosting</div>
+        <div class="card-desc">Create a file, mark it for deletion, map it as a memory section, close the handle (deleting it from disk), then spawn a process from the now-fileless section.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Remote_Thread_Hijacking" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/RTH_AI.jpg" alt="Thread Hijacking" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 15</div>
+        <div class="card-badges"><span class="badge bp">Thread Hijack</span><span class="badge bo">Context Swap</span></div>
+        <div class="card-title">Remote Thread Hijacking</div>
+        <div class="card-desc">Hijack an already-running thread in a remote process by manipulating its context, avoiding the creation of new threads which are more easily detected.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Module_Stomping" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/MS_AI.jpg" alt="Module Stomping" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 16</div>
+        <div class="card-badges"><span class="badge bg">Module Overwrite</span><span class="badge bb">Hiding in Plain Sight</span></div>
+        <div class="card-title">Module Stomping</div>
+        <div class="card-desc">Overwrite sections of a legitimate loaded module with malicious code, avoiding custom or suspicious DLL loads by hiding inside a trusted module.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/PEB_WALK_INJECTION" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/peb_AI.jpg" alt="PEB Walk" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 17</div>
+        <div class="card-badges"><span class="badge bp">PEB Walk</span><span class="badge bo">Dynamic Resolve</span></div>
+        <div class="card-title">PEB Walk Injection</div>
+        <div class="card-desc">Traverse the Process Environment Block to locate kernel32.dll and dynamically resolve VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread at runtime.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/PEB_WALK_API_OBFUSCATION" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/pebwalk_AI.jpg" alt="PEB Obfuscation" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 18</div>
+        <div class="card-badges"><span class="badge bg">PEB Walk</span><span class="badge bb">API Obfuscation</span></div>
+        <div class="card-title">PEB Walk and APIs Obfuscation</div>
+        <div class="card-desc">Combine PEB walking with full API call obfuscation for a layered approach that defeats both static import analysis and dynamic behaviour monitoring.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/NtCreateSection_MapViewOfSection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/ntthreat_AI.jpg" alt="NT Section" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 19</div>
+        <div class="card-badges"><span class="badge bp">NT APIs</span><span class="badge bo">Shared Section</span></div>
+        <div class="card-title">NtCreateSection and NtMapViewOfSection</div>
+        <div class="card-desc">Create a shared RWX memory section with NtCreateSection, map it into the target process using NtMapViewOfSection, write shellcode and execute.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Mokingjay" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/mok_AI.jpg" alt="Mokingjay" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 20</div>
+        <div class="card-badges"><span class="badge bg">Vulnerable DLL</span><span class="badge bb">RWX Abuse</span></div>
+        <div class="card-title">Mokingjay</div>
+        <div class="card-desc">Abuse existing RWX regions inside vulnerable DLLs (msys-2.0.dll) to avoid new RWX memory allocation detections — supports both self-inject and remote inject.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/DV_NEW" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/fork_AI.jpg" alt="Fork API" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 21</div>
+        <div class="card-badges"><span class="badge bp">Process Fork</span><span class="badge bo">Dirty Vanity</span></div>
+        <div class="card-title">Fork API Injection</div>
+        <div class="card-desc">Dirty Vanity technique abusing Windows process forking — create a child from the calling process, write shellcode into the forked process and execute it.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/Injection_Through_Fiber" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/fiber_AI.jpg" alt="Fibers" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 22</div>
+        <div class="card-badges"><span class="badge bg">Fibers</span><span class="badge bb">Cooperative Threading</span></div>
+        <div class="card-title">Injection through Fibers</div>
+        <div class="card-desc">Execute shellcode using Windows fiber cooperative threading — manually switch between fiber execution contexts without spawning a new thread, evading thread-based detections.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/NTAPI_Injection" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/nt_AI.jpg" alt="NT API" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 23</div>
+        <div class="card-badges"><span class="badge bp">NT APIs</span><span class="badge bo">Undocumented</span></div>
+        <div class="card-title">NT API Injection</div>
+        <div class="card-desc">Remote injection using undocumented ntdll.dll APIs — NtOpenProcess, NtAllocateVirtualMemory, NtWriteVirtualMemory, NtCreateRemoteThread — bypassing higher-level hooks.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/DirectSyscalls" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/direct_AI.jpg" alt="Direct Syscalls" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 24</div>
+        <div class="card-badges"><span class="badge bg">Direct Syscalls</span><span class="badge bb">Kernel Transition</span></div>
+        <div class="card-title">Direct Syscalls</div>
+        <div class="card-desc">Bypass all EDR userland hooks by invoking syscall instructions directly in the stub, transitioning straight to kernel without passing through ntdll.dll.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+    <a href="https://offensive-panda.github.io/ProcessInjectionTechniques/IndirectSyscalls" target="_blank" class="card">
+      <div class="card-img-wrap">
+        <img src="https://offensive-panda.github.io/ProcessInjectionTechniques/Assets/indirect_AI.jpg" alt="Indirect Syscalls" loading="lazy" onerror="this.style.display='none'">
+        <div class="card-img-fade"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">PE 25</div>
+        <div class="card-badges"><span class="badge bp">Indirect Syscalls</span><span class="badge bo">ntdll Origin</span></div>
+        <div class="card-title">Indirect Syscalls</div>
+        <div class="card-desc">Evolution of direct syscalls — redirect execution to the syscall instruction inside ntdll.dll, making the call appear to originate legitimately from ntdll memory space.</div>
+        <span class="card-link">Open Lab</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ── REFERENCES ── -->
+<section class="s" id="refs">
+  <div class="sh">
+    <div><div class="sh-eye">Sources</div><h2 class="sh-t">References</h2></div>
+  </div>
+  <div class="refs">
+    <a href="https://attack.mitre.org/techniques/T1055/" target="_blank" class="ref"><span class="ref-idx">01</span>attack.mitre.org/techniques/T1055 — MITRE ATT&amp;CK: Process Injection</a>
+    <a href="https://www.linkedin.com/in/usman-sikander13/" target="_blank" class="ref"><span class="ref-idx">02</span>linkedin.com/in/usman-sikander13</a>
+    <a href="https://github.com/deepinstinct/Dirty-Vanity" target="_blank" class="ref"><span class="ref-idx">03</span>github.com/deepinstinct/Dirty-Vanity</a>
+    <a href="https://www.securityjoes.com/post/process-mockingjay-echoing-rwx-in-userland-to-achieve-code-execution" target="_blank" class="ref"><span class="ref-idx">04</span>securityjoes.com — Process Mockingjay: Echoing RWX in Userland</a>
+    <a href="https://www.ired.team/" target="_blank" class="ref"><span class="ref-idx">05</span>ired.team — Red Team Notes</a>
+    <a href="https://github.com/jthuraisamy/SysWhispers2" target="_blank" class="ref"><span class="ref-idx">06</span>github.com/jthuraisamy/SysWhispers2</a>
+    <a href="https://github.com/klezVirus/SysWhispers3" target="_blank" class="ref"><span class="ref-idx">07</span>github.com/klezVirus/SysWhispers3</a>
+    <a href="https://github.com/RedTeamOperations/Advanced-Process-Injection-Workshop" target="_blank" class="ref"><span class="ref-idx">08</span>github.com/RedTeamOperations — Advanced Process Injection Workshop</a>
+    <a href="https://cytomate.net" target="_blank" class="ref"><span class="ref-idx">09</span>cytomate.net</a>
+  </div>
+</section>
+
+<!-- ── DISCLAIMER ── -->
+<section class="s s-alt">
+  <div class="disclaimer">
+    <div class="dis-icon">⚠️</div>
+    <div>
+      <div class="dis-t">Disclaimer</div>
+      <div class="dis-body">The content, techniques, and tools in this repository are intended solely for educational and research purposes within the cybersecurity community. The author explicitly disclaims any responsibility for misuse or unlawful use. Any actions taken based on this information are done so entirely at the user's own risk.</div>
+    </div>
+  </div>
+</section>
+
+<div class="gl"></div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-in">
+    <div>
+      <div class="fl-logo">ProcessInjectionTechniques</div>
+      <div class="fl-sub">by Offensive-Panda · For educational &amp; research purposes only</div>
+    </div>
+    <div class="flinks">
+      <a href="https://github.com/Offensive-Panda/ProcessInjectionTechniques" target="_blank" class="flink">GitHub</a>
+      <a href="https://www.linkedin.com/in/usman-sikander13/" target="_blank" class="flink">LinkedIn</a>
+      <a href="https://medium.com/@merasor07" target="_blank" class="flink">Medium</a>
+      <a href="https://cytomate.net" target="_blank" class="flink">Cytomate</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.opacity='1';
+      e.target.style.transform='translateY(0)';
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.card,.heat-item,.ref,.stat').forEach((el,i)=>{
+  el.style.cssText+='opacity:0;transform:translateY(18px);transition:opacity .45s ease '+((i%6)*.07)+'s,transform .45s ease '+((i%6)*.07)+'s,border-color .22s,box-shadow .22s,background .18s';
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
